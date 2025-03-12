@@ -50,25 +50,26 @@
             document.getElementById("emailForm").classList.remove("hidden");
         }
 
-        function sendEmail() {
-            let name = document.getElementById("userName").innerText;
-            let email = document.getElementById("userEmail").innerText;
+         function sendEmail() {
+        let name = document.getElementById("userName").innerText;
+        let email = document.getElementById("userEmail").innerText;  // Get logged-in user email
 
-            let subject = "Request for Renewal of MoU with Hungary for Stipendium Hungaricum Scholarship";
-            let body = `Dear Sir,%0A%0A` +
-                       `I hope this email finds you well.%0A%0A` +
-                       `I am writing to bring to your attention that the Memorandum of Understanding (MoU) between India and Hungary for the Stipendium Hungaricum Scholarship expired two years ago and has not been renewed. As a result, Indian students have not received nominations for the past two years, which has been a significant setback for those seeking higher education opportunities in Hungary.%0A%0A` +
-                       `Upon contacting the University Grants Commission (UGC), I was informed that if students highlight this issue, the Ministry of Education could take swift action to renew the MoU. Given the impact on students and the benefits of this scholarship program, I kindly request you to expedite the renewal process.%0A%0A` +
-                       `I, along with many other aspiring students, would be grateful for your immediate attention to this matter. Please let us know if any further steps are required from our side.%0A%0A` +
-                       `Thank you for your time and consideration.%0A%0A` +
-                       `Best regards,%0A` +
-                       `${name}%0A` +
-                       `${email}`;
+        let subject = "Request for Renewal of MoU with Hungary for Stipendium Hungaricum Scholarship";
+        let body = `Dear Sir,%0A%0A` +
+                `I hope this email finds you well.%0A%0A` +
+                `I am writing to bring to your attention that the Memorandum of Understanding (MoU) between India and Hungary for the Stipendium Hungaricum Scholarship expired two years ago and has not been renewed. As a result, Indian students have not received nominations for the past two years, which has been a significant setback for those seeking higher education opportunities in Hungary.%0A%0A` +
+                `Upon contacting the University Grants Commission (UGC), I was informed that if students highlight this issue, the Ministry of Education could take swift action to renew the MoU. Given the impact on students and the benefits of this scholarship program, I kindly request you to expedite the renewal process.%0A%0A` +
+                `I, along with many other aspiring students, would be grateful for your immediate attention to this matter. Please let us know if any further steps are required from our side.%0A%0A` +
+                `Thank you for your time and consideration.%0A%0A` +
+                `Best regards,%0A` +
+                `${name}%0A` +
+                `${email}`;
 
-            let mailtoLink = `https://mail.google.com/mail/?view=cm&fs=1&to=contact.edu@gov.in&su=${encodeURIComponent(subject)}&body=${body}`;
+        // Use mailto to ensure logged-in user's email is the sender
+        let mailtoLink = `mailto:contact.edu@gov.in?subject=${encodeURIComponent(subject)}&body=${body}`;
 
-            window.open(mailtoLink, "_blank");
-        }
+        window.location.href = mailtoLink; // Open in default email client (Gmail in browser)
+    }
     </script>
 
 </body>
