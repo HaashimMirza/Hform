@@ -3,34 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Send Pre-Filled Email</title>
+    <title>Send Email in Gmail App</title>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-        input { padding: 10px; margin: 10px; width: 80%; max-width: 400px; }
         button { padding: 10px 20px; background: #007BFF; color: white; border: none; cursor: pointer; }
         button:hover { background: #0056b3; }
     </style>
 </head>
 <body>
 
-    <h2>Send Pre-Filled Email</h2>
-    
-    <input type="text" id="userName" placeholder="Enter Your Name" required>
-    <input type="email" id="userEmail" placeholder="Enter Your Email" required>
-    
-    <br>
+    <h2>Send Email Using Gmail App</h2>
     <button onclick="sendEmail()">Send Email</button>
 
     <script>
         function sendEmail() {
-            let name = document.getElementById("userName").value;
-            let email = document.getElementById("userEmail").value;
-
-            if (!name || !email) {
-                alert("Please enter your name and email before sending.");
-                return;
-            }
-
             let subject = "Request for Renewal of MoU with Hungary for Stipendium Hungaricum Scholarship";
             let body = `Dear Sir,%0A%0A` +
                        `I hope this email finds you well.%0A%0A` +
@@ -38,13 +24,10 @@
                        `Upon contacting the University Grants Commission (UGC), I was informed that if students highlight this issue, the Ministry of Education could take swift action to renew the MoU. Given the impact on students and the benefits of this scholarship program, I kindly request you to expedite the renewal process.%0A%0A` +
                        `I, along with many other aspiring students, would be grateful for your immediate attention to this matter. Please let us know if any further steps are required from our side.%0A%0A` +
                        `Thank you for your time and consideration.%0A%0A` +
-                       `Best regards,%0A` +
-                       `${name}%0A` +
-                       `${email}`;
+                       `Best regards,%0A[Your Name]%0A[Your Email]`;
 
-            let mailtoLink = `https://mail.google.com/mail/?view=cm&fs=1&to=contact.edu@gov.in&su=${encodeURIComponent(subject)}&body=${body}`;
-
-            window.open(mailtoLink, "_blank");
+            let mailtoLink = `mailto:contact.edu@gov.in?subject=${encodeURIComponent(subject)}&body=${body}`;
+            window.location.href = mailtoLink; // Ensures Gmail app opens
         }
     </script>
 
