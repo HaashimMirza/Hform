@@ -6,55 +6,133 @@
     <title>Send Email to Ministries</title>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+        .form-group { display: flex; align-items: center; justify-content: center; margin: 15px; }
+        input { padding: 10px; width: 80%; max-width: 300px; border: 1px solid #ccc; border-radius: 5px; }
+        .status-icon { font-size: 20px; margin-left: 10px; display: none; }
+        .error { color: red; display: none; font-size: 14px; }
         button { padding: 10px 20px; background: #007BFF; color: white; border: none; cursor: pointer; margin: 10px; }
         button:hover { background: #0056b3; }
+        #email { background: #f0f0f0; cursor: not-allowed; } /* Greyed out email input */
+        #sendIndia { background: grey; cursor: not-allowed; opacity: 0.6; pointer-events: none; } /* Initially disabled */
+        #sendHungary { background: grey; cursor: not-allowed; opacity: 0.6; pointer-events: none; } /* Second button disabled */
     </style>
 </head>
 <body>
 
-    <h2>Send Pre-Filled Emails</h2>
+    <h2>Enter Your Details</h2>
 
-    <button onclick="sendEmailToIndia()">📩 Email Ministry of Education, India</button>
-    <button onclick="sendEmailToHungary()">📩 Email Ministry of Education, Hungary</button>
+    <div class="form-group">
+        <input type="text" id="name" placeholder="Enter Your Name" required>
+        <span class="status-icon" id="nameIcon">❗</span>
+    </div>
+    <p class="error" id="nameError">Please enter your name.</p>
+
+    <div class="form-group">
+        <input type="email" id="email" placeholder="Enter Your Email" required disabled>
+        <span class="status-icon" id="emailIcon">❗</span>
+    </div>
+    <p class="error" id="emailError">Please enter a valid email.</p>
+
+    <h2>Send Pre-Filled Emails</h2>
+    <button id="sendIndia" onclick="sendEmailToIndia()">📩 Email Ministry of Education, India</button>
+    <button id="sendHungary" onclick="sendEmailToHungary()">📩 Email Ministry of Education, Hungary</button>
 
     <script>
+        function validateField(input, icon, errorMsg) {
+            icon.style.display = "inline"; 
+            icon.innerText = "⏳"; // Show loading icon
+
+            setTimeout(() => {
+                if (input.value.trim() === "") {
+                    icon.innerText = "❗"; // Exclamation if empty
+                    errorMsg.style.display = "block";
+                    if (input.id === "name") {
+                        document.getElementById("email").disabled = true;
+                        document.getElementById("email").style.background = "#f0f0f0"; 
+                    }
+                } else {
+                    icon.innerText = "✅"; // Checkmark if valid
+                    errorMsg.style.display = "none";
+                    if (input.id === "name") {
+                        document.getElementById("email").disabled = false;
+                        document.getElementById("email").style.background = "white"; 
+                        document.getElementById("email").style.cursor = "text";
+                    }
+                }
+                checkFormValidity();
+            }, 500);
+        }
+
+        function checkFormValidity() {
+            let nameValid = document.getElementById("nameIcon").innerText === "✅";
+            let emailValid = document.getElementById("emailIcon").innerText === "✅";
+            
+            if (nameValid && emailValid) {
+                document.getElementById("sendIndia").style.background = "#007BFF";
+                document.getElementById("sendIndia").style.cursor = "pointer";
+                document.getElementById("sendIndia").style.opacity = "1";
+                document.getElementById("sendIndia").style.pointerEvents = "auto";
+            } else {
+                document.getElementById("sendIndia").style.background = "grey";
+                document.getElementById("sendIndia").style.cursor = "not-allowed";
+                document.getElementById("sendIndia").style.opacity = "0.6";
+                document.getElementById("sendIndia").style.pointerEvents = "none";
+            }
+        }
+
+        document.getElementById("name").addEventListener("input", function() {
+            validateField(this, document.getElementById("nameIcon"), document.getElementById("nameError"));
+        });
+
+        document.getElementById("email").addEventListener("input", function() {
+            validateField(this, document.getElementById("emailIcon"), document.getElementById("emailError"));
+        });
+
         function sendEmailToIndia() {
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+
             let subject = "Urgent Request for Renewal of MoU Between India and Hungary for Stipendium Hungaricum Scholarship";
             let body = `Dear Sir/Madam,%0A%0A` +
-                       `I am writing to bring to your attention the urgent need to renew the Memorandum of Understanding (MoU) between India and Hungary for the Stipendium Hungaricum Scholarship. This MoU expired two years ago, and as a result, Indian students have not been able to receive nominations for this prestigious scholarship program.%0A%0A` +
-                       `I have contacted the University Grants Commission (UGC), and they have informed me that if students highlight this issue, the Ministry of Education can take immediate action to renew the MoU. However, despite multiple efforts, no progress has been made so far.%0A%0A` +
-                       `Why This Matters:%0A` +
-                       `- The Stipendium Hungaricum Scholarship is a major opportunity for Indian students to pursue higher education in Hungary with full or partial funding.%0A` +
-                       `- Indian students have been unable to apply for two years due to the expired MoU, while students from other countries continue to benefit.%0A` +
-                       `- Timely renewal of the agreement will allow Indian students to apply for the upcoming scholarship cycle and secure admissions in Hungary.%0A%0A` +
-                       `Request:%0A` +
-                       `I kindly urge the Ministry of Education to take immediate steps to renew the MoU in coordination with the Hungarian authorities. This will ensure that Indian students can once again apply for the scholarship and continue their academic pursuits in Hungary.%0A%0A` +
-                       `Please provide an update regarding the status of the MoU renewal and any actions that can be taken from our side to facilitate this process.%0A%0A` +
-                       `Your prompt attention to this matter would be highly appreciated, as it directly affects the academic future of many students.%0A%0A` +
-                       `Thank you for your time and support.%0A%0A` +
-                       `Best regards,%0A[Your Name]%0A[Your Contact Information]`;
+                       `I am writing to bring to your attention the urgent need to renew the Memorandum of Understanding (MoU) between India and Hungary for the Stipendium Hungaricum Scholarship.%0A%0A` +
+                       `Best regards,%0A${name}%0A${email}`;
 
             let mailtoLink = `mailto:contact.edu@gov.in,info.edu@gov.in?subject=${encodeURIComponent(subject)}&body=${body}`;
-            window.location.href = mailtoLink; // Opens Gmail app
+            window.location.href = mailtoLink;
+
+            // Store the flag that first button is clicked
+            localStorage.setItem("firstEmailSent", "true");
+        }
+
+        function checkFirstEmailSent() {
+            let firstEmailSent = localStorage.getItem("firstEmailSent");
+
+            if (firstEmailSent === "true") {
+                document.getElementById("sendHungary").style.background = "#007BFF";
+                document.getElementById("sendHungary").style.cursor = "pointer";
+                document.getElementById("sendHungary").style.opacity = "1";
+                document.getElementById("sendHungary").style.pointerEvents = "auto";
+            }
         }
 
         function sendEmailToHungary() {
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+
             let subject = "Request for MoU Renewal with India – Stipendium Hungaricum Scholarship";
             let body = `Dear Sir/Madam,%0A%0A` +
-                       `I am reaching out regarding the Memorandum of Understanding (MoU) between Hungary and India for the Stipendium Hungaricum Scholarship, which expired two years ago and has not yet been renewed. This has prevented Indian students from applying for the program, causing great disappointment among aspiring scholars.%0A%0A` +
-                       `After contacting the University Grants Commission (UGC) in India, I was informed that if both governments take prompt action, the MoU could be renewed soon. Given the significance of this program in strengthening educational collaboration between our countries, I kindly request the Hungarian Ministry of Education to initiate discussions with the Indian authorities to expedite the renewal process.%0A%0A` +
-                       `Why This is Important:%0A` +
-                       `- The Stipendium Hungaricum Scholarship has been a crucial platform for Indian students to pursue quality education in Hungary.%0A` +
-                       `- The absence of the MoU has led to a missed opportunity for Indian students, while students from other nations continue to benefit.%0A` +
-                       `- Many students are eagerly waiting to apply, and swift action on the MoU renewal would allow them to participate in the upcoming application cycle.%0A%0A` +
-                       `Request:%0A` +
-                       `I request the Hungarian Ministry of Education and the Department handling the Stipendium Hungaricum Scholarship to coordinate with the Indian Ministry of Education to finalize the MoU renewal at the earliest. Please let us know if there are any necessary steps we can take to support this process.%0A%0A` +
-                       `Your assistance in resolving this matter would be greatly appreciated. Thank you for your time and consideration.%0A%0A` +
-                       `Best regards,%0A[Your Name]%0A[Your Contact Information]`;
+                       `I am reaching out regarding the Memorandum of Understanding (MoU) between Hungary and India for the Stipendium Hungaricum Scholarship, which expired two years ago and has not yet been renewed.%0A%0A` +
+                       `Best regards,%0A${name}%0A${email}`;
 
             let mailtoLink = `mailto:office@itm.gov.hu,stipendiumhungaricum@itm.gov.hu?subject=${encodeURIComponent(subject)}&body=${body}`;
-            window.location.href = mailtoLink; // Opens Gmail app
+            window.location.href = mailtoLink;
+
+            // Clear the flag after second email is sent
+            localStorage.removeItem("firstEmailSent");
         }
+
+        // Check if first email was sent when page loads
+        window.onload = checkFirstEmailSent;
     </script>
 
 </body>
