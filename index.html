@@ -16,39 +16,16 @@
 <body>
 
     <h2>Login & Send Pre-Filled Email</h2>
-    
-    <!-- Google Sign-In Button -->
-    <div id="g_id_onload"
-         data-client_id="952915553222-rv3epqdselbreapr76gn7iad1flcgsuc.apps.googleusercontent.com"
-         data-context="signin"
-         data-ux_mode="popup"
-         data-callback="onSignIn">
-    </div>
-
-    <div class="g_id_signin" data-type="standard"></div>
-
+   
     <!-- Email Form (Hidden Initially) -->
     <div id="emailForm" class="hidden">
-        <p><b>Logged in as:</b> <span id="userName"></span> (<span id="userEmail"></span>)</p>
+       
         
         <button onclick="sendEmail()">Send Email</button>
     </div>
 
     <script>
-        function onSignIn(response) {
-            let credential = response.credential;
-            let decoded = JSON.parse(atob(credential.split(".")[1])); // Decode JWT token
-            
-            let userName = decoded.name;
-            let userEmail = decoded.email;
-            
-            // Show user details
-            document.getElementById("userName").innerText = userName;
-            document.getElementById("userEmail").innerText = userEmail;
-
-            // Show email form
-            document.getElementById("emailForm").classList.remove("hidden");
-        }
+      
 
          function sendEmail() {
         let name = document.getElementById("userName").innerText;
