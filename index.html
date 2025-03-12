@@ -3,31 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Send Email in Gmail App</title>
+    <title>Send Email to Ministries</title>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-        button { padding: 10px 20px; background: #007BFF; color: white; border: none; cursor: pointer; }
+        button { padding: 10px 20px; background: #007BFF; color: white; border: none; cursor: pointer; margin: 10px; }
         button:hover { background: #0056b3; }
     </style>
 </head>
 <body>
 
-    <h2>Send Email Using Gmail App</h2>
-    <button onclick="sendEmail()">Send Email</button>
+    <h2>Send Pre-Filled Emails</h2>
+
+    <button onclick="sendEmailToIndia()">📩 Email Ministry of Education, India</button>
+    <button onclick="sendEmailToHungary()">📩 Email Ministry of Education, Hungary</button>
 
     <script>
-        function sendEmail() {
-            let subject = "Request for Renewal of MoU with Hungary for Stipendium Hungaricum Scholarship";
-            let body = `Dear Sir,%0A%0A` +
-                       `I hope this email finds you well.%0A%0A` +
-                       `I am writing to bring to your attention that the Memorandum of Understanding (MoU) between India and Hungary for the Stipendium Hungaricum Scholarship expired two years ago and has not been renewed. As a result, Indian students have not received nominations for the past two years, which has been a significant setback for those seeking higher education opportunities in Hungary.%0A%0A` +
-                       `Upon contacting the University Grants Commission (UGC), I was informed that if students highlight this issue, the Ministry of Education could take swift action to renew the MoU. Given the impact on students and the benefits of this scholarship program, I kindly request you to expedite the renewal process.%0A%0A` +
-                       `I, along with many other aspiring students, would be grateful for your immediate attention to this matter. Please let us know if any further steps are required from our side.%0A%0A` +
-                       `Thank you for your time and consideration.%0A%0A` +
-                       `Best regards,%0A[Your Name]%0A[Your Email]`;
+        function sendEmailToIndia() {
+            let subject = "Urgent Request for Renewal of MoU Between India and Hungary for Stipendium Hungaricum Scholarship";
+            let body = `Dear Sir/Madam,%0A%0A` +
+                       `I am writing to bring to your attention the urgent need to renew the Memorandum of Understanding (MoU) between India and Hungary for the Stipendium Hungaricum Scholarship. This MoU expired two years ago, and as a result, Indian students have not been able to receive nominations for this prestigious scholarship program.%0A%0A` +
+                       `I have contacted the University Grants Commission (UGC), and they have informed me that if students highlight this issue, the Ministry of Education can take immediate action to renew the MoU. However, despite multiple efforts, no progress has been made so far.%0A%0A` +
+                       `Why This Matters:%0A` +
+                       `- The Stipendium Hungaricum Scholarship is a major opportunity for Indian students to pursue higher education in Hungary with full or partial funding.%0A` +
+                       `- Indian students have been unable to apply for two years due to the expired MoU, while students from other countries continue to benefit.%0A` +
+                       `- Timely renewal of the agreement will allow Indian students to apply for the upcoming scholarship cycle and secure admissions in Hungary.%0A%0A` +
+                       `Request:%0A` +
+                       `I kindly urge the Ministry of Education to take immediate steps to renew the MoU in coordination with the Hungarian authorities. This will ensure that Indian students can once again apply for the scholarship and continue their academic pursuits in Hungary.%0A%0A` +
+                       `Please provide an update regarding the status of the MoU renewal and any actions that can be taken from our side to facilitate this process.%0A%0A` +
+                       `Your prompt attention to this matter would be highly appreciated, as it directly affects the academic future of many students.%0A%0A` +
+                       `Thank you for your time and support.%0A%0A` +
+                       `Best regards,%0A[Your Name]%0A[Your Contact Information]`;
 
-            let mailtoLink = `mailto:contact.edu@gov.in?subject=${encodeURIComponent(subject)}&body=${body}`;
-            window.location.href = mailtoLink; // Ensures Gmail app opens
+            let mailtoLink = `mailto:contact.edu@gov.in,info.edu@gov.in?subject=${encodeURIComponent(subject)}&body=${body}`;
+            window.location.href = mailtoLink; // Opens Gmail app
+        }
+
+        function sendEmailToHungary() {
+            let subject = "Request for MoU Renewal with India – Stipendium Hungaricum Scholarship";
+            let body = `Dear Sir/Madam,%0A%0A` +
+                       `I am reaching out regarding the Memorandum of Understanding (MoU) between Hungary and India for the Stipendium Hungaricum Scholarship, which expired two years ago and has not yet been renewed. This has prevented Indian students from applying for the program, causing great disappointment among aspiring scholars.%0A%0A` +
+                       `After contacting the University Grants Commission (UGC) in India, I was informed that if both governments take prompt action, the MoU could be renewed soon. Given the significance of this program in strengthening educational collaboration between our countries, I kindly request the Hungarian Ministry of Education to initiate discussions with the Indian authorities to expedite the renewal process.%0A%0A` +
+                       `Why This is Important:%0A` +
+                       `- The Stipendium Hungaricum Scholarship has been a crucial platform for Indian students to pursue quality education in Hungary.%0A` +
+                       `- The absence of the MoU has led to a missed opportunity for Indian students, while students from other nations continue to benefit.%0A` +
+                       `- Many students are eagerly waiting to apply, and swift action on the MoU renewal would allow them to participate in the upcoming application cycle.%0A%0A` +
+                       `Request:%0A` +
+                       `I request the Hungarian Ministry of Education and the Department handling the Stipendium Hungaricum Scholarship to coordinate with the Indian Ministry of Education to finalize the MoU renewal at the earliest. Please let us know if there are any necessary steps we can take to support this process.%0A%0A` +
+                       `Your assistance in resolving this matter would be greatly appreciated. Thank you for your time and consideration.%0A%0A` +
+                       `Best regards,%0A[Your Name]%0A[Your Contact Information]`;
+
+            let mailtoLink = `mailto:office@itm.gov.hu?cc=stipendiumhungaricum@itm.gov.hu&subject=${encodeURIComponent(subject)}&body=${body}`;
+            window.location.href = mailtoLink; // Opens Gmail app
         }
     </script>
 
