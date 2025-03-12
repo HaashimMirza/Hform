@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Send Email</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+        input { padding: 10px; margin: 10px; width: 80%; max-width: 400px; }
+        button { padding: 10px 20px; background: #007BFF; color: white; border: none; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <h2>Login & Send Pre-Filled Email</h2>
+    
+    <!-- Google Sign-In Button -->
+    <div id="g_id_onload"
+         data-client_id="952915553222-rv3epqdselbreapr76gn7iad1flcgsuc.apps.googleusercontent.com"
+         data-context="signin"
+         data-ux_mode="popup"
+         data-callback="onSignIn">
+    </div>
+
+    <div class="g_id_signin" data-type="standard"></div>
+
+    <!-- Email Form (Hidden Initially) -->
+    <div id="emailForm" class="hidden">
+        <p><b>Logged in as:</b> <span id="userName"></span> (<span id="userEmail"></span>)</p>
+        
+        <button onclick="sendEmail()">Send Email</button>
+    </div>
+
+    <script>
+        function onSignIn(response) {
+            let credential = response.credential;
+            let decoded = JSON.parse(atob(credential.split(".")[1])); // Decode JWT token
+            
+            let userName = decoded.name;
+            let userEmail = decoded.email;
+            
+            // Show user details
+            document.getElementById("userName").innerText = userName;
+            document.getElementById("userEmail").innerText = userEmail;
+
+            // Show email form
+            document.getElementById("emailForm").classList.remove("hidden");
+        }
+
+        function sendEmail() {
+            let name = document.getElementById("userName").innerText;
+            let email = document.getElementById("userEmail").innerText;
+
+            let subject = "Request for Renewal of MoU with Hungary for Stipendium Hungaricum Scholarship";
+            let body = `Dear Sir,%0A%0A` +
+                       `I hope this email finds you well.%0A%0A` +
+                       `I am writing to bring to your attention that the Memorandum of Understanding (MoU) between India and Hungary for the Stipendium Hungaricum Scholarship expired two years ago and has not been renewed. As a result, Indian students have not received nominations for the past two years, which has been a significant setback for those seeking higher education opportunities in Hungary.%0A%0A` +
+                       `Upon contacting the University Grants Commission (UGC), I was informed that if students highlight this issue, the Ministry of Education could take swift action to renew the MoU. Given the impact on students and the benefits of this scholarship program, I kindly request you to expedite the renewal process.%0A%0A` +
+                       `I, along with many other aspiring students, would be grateful for your immediate attention to this matter. Please let us know if any further steps are required from our side.%0A%0A` +
+                       `Thank you for your time and consideration.%0A%0A` +
+                       `Best regards,%0A` +
+                       `${name}%0A` +
+                       `${email}`;
+
+            let mailtoLink = `https://mail.google.com/mail/?view=cm&fs=1&to=contact.edu@gov.in&su=${encodeURIComponent(subject)}&body=${body}`;
+
+            window.open(mailtoLink, "_blank");
+        }
+    </script>
+
+</body>
+</html>
