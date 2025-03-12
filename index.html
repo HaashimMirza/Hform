@@ -13,8 +13,7 @@
         button { padding: 10px 20px; background: #007BFF; color: white; border: none; cursor: pointer; margin: 10px; }
         button:hover { background: #0056b3; }
         #email { background: #f0f0f0; cursor: not-allowed; } /* Greyed out email input */
-        #sendIndia { background: grey; cursor: not-allowed; opacity: 0.6; pointer-events: none; } /* Initially disabled */
-        #sendHungary { background: grey; cursor: not-allowed; opacity: 0.6; pointer-events: none; } /* Second button disabled */
+        #sendIndia, #sendHungary { background: grey; cursor: not-allowed; opacity: 0.6; pointer-events: none; } /* Initially disabled */
     </style>
 </head>
 <body>
@@ -66,17 +65,12 @@
         function checkFormValidity() {
             let nameValid = document.getElementById("nameIcon").innerText === "✅";
             let emailValid = document.getElementById("emailIcon").innerText === "✅";
-            
+
             if (nameValid && emailValid) {
-                document.getElementById("sendIndia").style.background = "#007BFF";
-                document.getElementById("sendIndia").style.cursor = "pointer";
-                document.getElementById("sendIndia").style.opacity = "1";
-                document.getElementById("sendIndia").style.pointerEvents = "auto";
+                localStorage.setItem("firstButtonUnlocked", "true"); // Save first button unlocked state
+                unlockButton("sendIndia");
             } else {
-                document.getElementById("sendIndia").style.background = "grey";
-                document.getElementById("sendIndia").style.cursor = "not-allowed";
-                document.getElementById("sendIndia").style.opacity = "0.6";
-                document.getElementById("sendIndia").style.pointerEvents = "none";
+                lockButton("sendIndia");
             }
         }
 
@@ -87,6 +81,22 @@
         document.getElementById("email").addEventListener("input", function() {
             validateField(this, document.getElementById("emailIcon"), document.getElementById("emailError"));
         });
+
+        function unlockButton(buttonId) {
+            let btn = document.getElementById(buttonId);
+            btn.style.background = "#007BFF";
+            btn.style.cursor = "pointer";
+            btn.style.opacity = "1";
+            btn.style.pointerEvents = "auto";
+        }
+
+        function lockButton(buttonId) {
+            let btn = document.getElementById(buttonId);
+            btn.style.background = "grey";
+            btn.style.cursor = "not-allowed";
+            btn.style.opacity = "0.6";
+            btn.style.pointerEvents = "none";
+        }
 
         function sendEmailToIndia() {
             let name = document.getElementById("name").value;
@@ -100,19 +110,8 @@
             let mailtoLink = `mailto:contact.edu@gov.in,info.edu@gov.in?subject=${encodeURIComponent(subject)}&body=${body}`;
             window.location.href = mailtoLink;
 
-            // Store the flag that first button is clicked
+            // Save that first email was sent
             localStorage.setItem("firstEmailSent", "true");
-        }
-
-        function checkFirstEmailSent() {
-            let firstEmailSent = localStorage.getItem("firstEmailSent");
-
-            if (firstEmailSent === "true") {
-                document.getElementById("sendHungary").style.background = "#007BFF";
-                document.getElementById("sendHungary").style.cursor = "pointer";
-                document.getElementById("sendHungary").style.opacity = "1";
-                document.getElementById("sendHungary").style.pointerEvents = "auto";
-            }
         }
 
         function sendEmailToHungary() {
@@ -127,12 +126,26 @@
             let mailtoLink = `mailto:office@itm.gov.hu,stipendiumhungaricum@itm.gov.hu?subject=${encodeURIComponent(subject)}&body=${body}`;
             window.location.href = mailtoLink;
 
-            // Clear the flag after second email is sent
+            // Clear everything after second email is sent
             localStorage.removeItem("firstEmailSent");
+            localStorage.removeItem("firstButtonUnlocked");
         }
 
-        // Check if first email was sent when page loads
-        window.onload = checkFirstEmailSent;
+        function checkStoredState() {
+            let firstButtonUnlocked = localStorage.getItem("firstButtonUnlocked");
+            let firstEmailSent = localStorage.getItem("firstEmailSent");
+
+            if (firstButtonUnlocked === "true") {
+                unlockButton("sendIndia");
+            }
+
+            if (firstEmailSent === "true") {
+                unlockButton("sendHungary");
+            }
+        }
+
+        // Check state when page loads
+        window.onload = checkStoredState;
     </script>
 
 </body>
