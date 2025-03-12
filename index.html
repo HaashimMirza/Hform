@@ -108,10 +108,10 @@
                        `Best regards,%0A${name}%0A${email}`;
 
             let mailtoLink = `mailto:contact.edu@gov.in,info.edu@gov.in?subject=${encodeURIComponent(subject)}&body=${body}`;
-            window.location.href = mailtoLink;
-
-            // Save that first email was sent
+            
+            // Save state & Redirect to email
             localStorage.setItem("firstEmailSent", "true");
+            window.location.href = mailtoLink;
         }
 
         function sendEmailToHungary() {
@@ -124,11 +124,11 @@
                        `Best regards,%0A${name}%0A${email}`;
 
             let mailtoLink = `mailto:office@itm.gov.hu,stipendiumhungaricum@itm.gov.hu?subject=${encodeURIComponent(subject)}&body=${body}`;
-            window.location.href = mailtoLink;
 
-            // Clear everything after second email is sent
+            // Clear state after second email
             localStorage.removeItem("firstEmailSent");
             localStorage.removeItem("firstButtonUnlocked");
+            window.location.href = mailtoLink;
         }
 
         function checkStoredState() {
