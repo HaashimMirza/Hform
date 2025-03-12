@@ -52,7 +52,7 @@
                        `Your assistance in resolving this matter would be greatly appreciated. Thank you for your time and consideration.%0A%0A` +
                        `Best regards,%0A[Your Name]%0A[Your Contact Information]`;
 
-            let mailtoLink = `mailto:office@itm.gov.hu?cc=stipendiumhungaricum@itm.gov.hu&subject=${encodeURIComponent(subject)}&body=${body}`;
+              let mailtoLink = `mailto:office@itm.gov.hu,stipendiumhungaricum@itm.gov.hu?subject=${encodeURIComponent(subject)}&body=${body}`;
             window.location.href = mailtoLink; // Opens Gmail app
         }
     </script>
