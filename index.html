@@ -151,13 +151,19 @@
             window.location.href = mailtoLink;
         }
 
-        window.onload = function() {
+        window.onload = function () {
+            // Restore form data (Name and Email)
             document.getElementById("name").value = localStorage.getItem("formName") || "";
             document.getElementById("email").value = localStorage.getItem("formEmail") || "";
 
+            // Trigger validation for both fields
             validateField(document.getElementById("name"), document.getElementById("nameIcon"), document.getElementById("nameError"));
             validateField(document.getElementById("email"), document.getElementById("emailIcon"), document.getElementById("emailError"));
+
+            // **Delay checking buttons to ensure localStorage updates properly**
+            setTimeout(checkFormValidity, 300);  // ✅ Fix for Mobile
         };
+
     </script>
 
 </body>
