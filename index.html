@@ -97,7 +97,14 @@
             let formValid = nameValid && emailValid;
 
             // Unlock India button first
-            formValid ? unlockButton("sendIndia") : lockButton("sendIndia");
+            if (formValid) {
+                unlockButton("sendIndia");
+            } else {
+                lockButton("sendIndia");
+                lockButton("sendHungary");
+                lockButton("sendUGC");
+                return; // Stop checking further if form is not valid
+            }
 
             // Unlock Hungary button only after India email is sent
             const firstEmailSent = localStorage.getItem("firstEmailSent") === "true";
