@@ -12,8 +12,8 @@
         .error { color: red; display: none; font-size: 14px; }
         button { padding: 10px 20px; background: #007BFF; color: white; border: none; cursor: pointer; margin: 10px; }
         button:hover { background: #0056b3; }
-        #email { background: #f0f0f0; cursor: not-allowed; } /* Greyed out email input */
-        #sendIndia, #sendHungary { background: grey; cursor: not-allowed; opacity: 0.6; pointer-events: none; } /* Initially disabled */
+        #email { background: #f0f0f0; cursor: not-allowed; }
+        #sendIndia, #sendHungary, #sendUGC { background: grey; cursor: not-allowed; opacity: 0.6; pointer-events: none; }
     </style>
 </head>
 <body>
@@ -35,22 +35,34 @@
     <h2>Send Pre-Filled Emails</h2>
     <button id="sendIndia" onclick="sendEmailToIndia()">📩 Email Ministry of Education, India</button>
     <button id="sendHungary" onclick="sendEmailToHungary()">📩 Email Ministry of Education, Hungary</button>
+    <button id="sendUGC" onclick="sendEmailToUGC()">📩 Email UGC Chairman</button>
 
     <script>
+        // Save form data to localStorage
+        document.getElementById("name").addEventListener("input", function() {
+            validateField(this, document.getElementById("nameIcon"), document.getElementById("nameError"));
+            localStorage.setItem("formName", this.value.trim());
+        });
+
+        document.getElementById("email").addEventListener("input", function() {
+            validateField(this, document.getElementById("emailIcon"), document.getElementById("emailError"));
+            localStorage.setItem("formEmail", this.value.trim());
+        });
+
         function validateField(input, icon, errorMsg) {
             icon.style.display = "inline"; 
             icon.innerText = "⏳"; // Show loading icon
 
             setTimeout(() => {
                 if (input.value.trim() === "") {
-                    icon.innerText = "❗"; // Exclamation if empty
+                    icon.innerText = "❗";
                     errorMsg.style.display = "block";
                     if (input.id === "name") {
                         document.getElementById("email").disabled = true;
                         document.getElementById("email").style.background = "#f0f0f0"; 
                     }
                 } else {
-                    icon.innerText = "✅"; // Checkmark if valid
+                    icon.innerText = "✅";
                     errorMsg.style.display = "none";
                     if (input.id === "name") {
                         document.getElementById("email").disabled = false;
@@ -61,26 +73,6 @@
                 checkFormValidity();
             }, 500);
         }
-
-        function checkFormValidity() {
-            let nameValid = document.getElementById("nameIcon").innerText === "✅";
-            let emailValid = document.getElementById("emailIcon").innerText === "✅";
-
-            if (nameValid && emailValid) {
-                localStorage.setItem("firstButtonUnlocked", "true"); // Save first button unlocked state
-                unlockButton("sendIndia");
-            } else {
-                lockButton("sendIndia");
-            }
-        }
-
-        document.getElementById("name").addEventListener("input", function() {
-            validateField(this, document.getElementById("nameIcon"), document.getElementById("nameError"));
-        });
-
-        document.getElementById("email").addEventListener("input", function() {
-            validateField(this, document.getElementById("emailIcon"), document.getElementById("emailError"));
-        });
 
         function unlockButton(buttonId) {
             let btn = document.getElementById(buttonId);
@@ -98,54 +90,74 @@
             btn.style.pointerEvents = "none";
         }
 
+        // Check button unlocking conditions
+        function checkFormValidity() {
+            let nameValid = document.getElementById("nameIcon").innerText === "✅";
+            let emailValid = document.getElementById("emailIcon").innerText === "✅";
+            let formValid = nameValid && emailValid;
+
+            // Unlock India button first
+            formValid ? unlockButton("sendIndia") : lockButton("sendIndia");
+
+            // Unlock Hungary button only after India email is sent
+            const firstEmailSent = localStorage.getItem("firstEmailSent") === "true";
+            if (formValid && firstEmailSent) {
+                unlockButton("sendHungary");
+            } else {
+                lockButton("sendHungary");
+            }
+
+            // Unlock UGC button only after Hungary email is sent
+            const secondEmailSent = localStorage.getItem("secondEmailSent") === "true";
+            if (formValid && secondEmailSent) {
+                unlockButton("sendUGC");
+            } else {
+                lockButton("sendUGC");
+            }
+        }
+
         function sendEmailToIndia() {
             let name = document.getElementById("name").value;
             let email = document.getElementById("email").value;
-
             let subject = "Urgent Request for Renewal of MoU Between India and Hungary for Stipendium Hungaricum Scholarship";
-            let body = `Dear Sir/Madam,%0A%0A` +
-                       `I am writing to bring to your attention the urgent need to renew the Memorandum of Understanding (MoU) between India and Hungary for the Stipendium Hungaricum Scholarship.%0A%0A` +
-                       `Best regards,%0A${name}%0A${email}`;
+            let body = `Dear Sir/Madam,%0A%0A I am writing to bring to your attention the urgent need to renew the MoU between India and Hungary.%0A%0A Best regards,%0A${name}%0A${email}`;
+            let mailtoLink = `mailto:contact.edu@gov.in?subject=${encodeURIComponent(subject)}&body=${body}`;
 
-            let mailtoLink = `mailto:contact.edu@gov.in,info.edu@gov.in?subject=${encodeURIComponent(subject)}&body=${body}`;
-            
-            // Save state & Redirect to email
             localStorage.setItem("firstEmailSent", "true");
+            checkFormValidity();
             window.location.href = mailtoLink;
         }
 
         function sendEmailToHungary() {
             let name = document.getElementById("name").value;
             let email = document.getElementById("email").value;
-
             let subject = "Request for MoU Renewal with India – Stipendium Hungaricum Scholarship";
-            let body = `Dear Sir/Madam,%0A%0A` +
-                       `I am reaching out regarding the Memorandum of Understanding (MoU) between Hungary and India for the Stipendium Hungaricum Scholarship, which expired two years ago and has not yet been renewed.%0A%0A` +
-                       `Best regards,%0A${name}%0A${email}`;
+            let body = `Dear Sir/Madam,%0A%0A I kindly request the Hungarian Ministry of Education to expedite the renewal of the MoU with India.%0A%0A Best regards,%0A${name}%0A${email}`;
+            let mailtoLink = `mailto:office@itm.gov.hu?subject=${encodeURIComponent(subject)}&body=${body}`;
 
-            let mailtoLink = `mailto:office@itm.gov.hu,stipendiumhungaricum@itm.gov.hu?subject=${encodeURIComponent(subject)}&body=${body}`;
-
-            // Clear state after second email
-            localStorage.removeItem("firstEmailSent");
-            localStorage.removeItem("firstButtonUnlocked");
+            localStorage.setItem("secondEmailSent", "true");
+            checkFormValidity();
             window.location.href = mailtoLink;
         }
 
-        function checkStoredState() {
-            let firstButtonUnlocked = localStorage.getItem("firstButtonUnlocked");
-            let firstEmailSent = localStorage.getItem("firstEmailSent");
+        function sendEmailToUGC() {
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let subject = "Urgent Request for UGC’s Intervention in Renewal of MoU for Stipendium Hungaricum Scholarship";
+            let body = `Dear Prof. V. Sudharsana,%0A%0A I am seeking your intervention in the renewal of the MoU between India and Hungary.%0A%0A Best regards,%0A${name}%0A${email}`;
+            let mailtoLink = `mailto:vsudharsana.ugc@nic.in?subject=${encodeURIComponent(subject)}&body=${body}`;
 
-            if (firstButtonUnlocked === "true") {
-                unlockButton("sendIndia");
-            }
-
-            if (firstEmailSent === "true") {
-                unlockButton("sendHungary");
-            }
+            localStorage.clear();
+            window.location.href = mailtoLink;
         }
 
-        // Check state when page loads
-        window.onload = checkStoredState;
+        window.onload = function() {
+            document.getElementById("name").value = localStorage.getItem("formName") || "";
+            document.getElementById("email").value = localStorage.getItem("formEmail") || "";
+
+            validateField(document.getElementById("name"), document.getElementById("nameIcon"), document.getElementById("nameError"));
+            validateField(document.getElementById("email"), document.getElementById("emailIcon"), document.getElementById("emailError"));
+        };
     </script>
 
 </body>
