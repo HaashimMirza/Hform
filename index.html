@@ -343,7 +343,6 @@
                 `- The Stipendium Hungaricum Scholarship has been a crucial platform for Indian students to pursue quality education in Hungary.\n` +
                 `- The absence of the MoU has led to a missed opportunity for Indian students, while students from other nations continue to benefit.\n` +
                 `- Many students are eagerly waiting to apply, and swift action on the MoU renewal would allow them to participate in the upcoming application cycle.\n\n` +
-                `Request:\n` +
                 `I request the Hungarian Ministry of Education and the Department handling the Stipendium Hungaricum Scholarship to coordinate with the Indian Ministry of Education to finalize the MoU renewal at the earliest. Please let us know if there are any necessary steps we can take to support this process.\n\n` +
                 `Your assistance in resolving this matter would be greatly appreciated. Thank you for your time and consideration.\n\n` +
                 `Best regards,\n${name}\n${country}`;
@@ -352,6 +351,32 @@
 
         window.location.href = mailtoLink;
     }
+
+    function sendEmailToIndia() {
+    let name = document.getElementById("name").value.trim();
+    let country = document.getElementById("country").value.trim();
+
+    let subject = "Urgent Request for Renewal of MoU Between India and Hungary for Stipendium Hungaricum Scholarship";
+
+    let body = `Dear Sir/Madam,\n\n` +
+               `I am writing to bring to your attention the urgent need to renew the Memorandum of Understanding (MoU) between India and Hungary for the Stipendium Hungaricum Scholarship. This MoU expired two years ago, and as a result, Indian students have not been able to receive nominations for this prestigious scholarship program.\n\n` +
+               `I have contacted the University Grants Commission (UGC), and they have informed me that if students highlight this issue, the Ministry of Education can take immediate action to renew the MoU. However, despite multiple efforts, no progress has been made so far.\n\n` +
+               `Why This Matters:\n` +
+               `- The Stipendium Hungaricum Scholarship is a major opportunity for Indian students to pursue higher education in Hungary with full or partial funding.\n` +
+               `- Indian students have been unable to apply for two years due to the expired MoU, while students from other countries continue to benefit.\n` +
+               `- Timely renewal of the agreement will allow Indian students to apply for the upcoming scholarship cycle and secure admissions in Hungary.\n\n` +
+               
+               `I kindly urge the Ministry of Education to take immediate steps to renew the MoU in coordination with the Hungarian authorities. This will ensure that Indian students can once again apply for the scholarship and continue their academic pursuits in Hungary.\n\n` +
+               `Please provide an update regarding the status of the MoU renewal and any actions that can be taken from our side to facilitate this process.\n\n` +
+               `Your prompt attention to this matter would be highly appreciated, as it directly affects the academic future of many students.\n\n` +
+               `Thank you for your time and support.\n\n` +
+               `Best regards,\n${name}\n${country}`;
+
+    let mailtoLink = `mailto:contact.edu@gov.in,info.edu@gov.in,minister.sm@gov.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailtoLink;
+}
+
 
 
         // Lock country dropdown & agreement checkbox initially
