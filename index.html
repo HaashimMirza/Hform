@@ -477,7 +477,8 @@
         ${name}
         ${country}`;
 
-    let mailtoLink = `mailto:office@itm.gov.hu,stipendiumhungacium@tpf.hu,info@tpf.hu,studyinhungary@tpf.hu,stipendiumhungaricum@itm.gov.hu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        // Encode only at the end to avoid unnecessary `%0A` issues
+        let mailtoLink = `mailto:office@itm.gov.hu,stipendiumhungacium@tpf.hu,info@tpf.hu,studyinhungary@tpf.hu,stipendiumhungaricum@itm.gov.hu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
     // ✅ Save state before redirecting
     localStorage.setItem("secondEmailSent", "true");
