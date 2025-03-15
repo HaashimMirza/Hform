@@ -47,6 +47,22 @@
         const urlParams = new URLSearchParams(window.location.search);
         document.getElementById("supporterNumber").innerText = urlParams.get("supporter") || "Loading...";
 
+         // Function to get ordinal suffix (st, nd, rd, th)
+         function getOrdinalSuffix(n) {
+            if (n % 100 >= 11 && n % 100 <= 13) {
+                return n + "th";  // Special case for 11th, 12th, 13th
+            }
+            switch (n % 10) {
+                case 1: return n + "st";
+                case 2: return n + "nd";
+                case 3: return n + "rd";
+                default: return n + "th";
+            }
+        }
+
+        // Display the supporter number with correct ordinal suffix
+        document.getElementById("supporterNumber").innerText = getOrdinalSuffix(supporterNum);
+
           // ✅ Redirect back to index.html after 5 seconds
           setTimeout(() => {
             window.location.href = "index.html";
