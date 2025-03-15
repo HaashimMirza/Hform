@@ -377,6 +377,32 @@
     window.location.href = mailtoLink;
 }
 
+function sendEmailToUGC() {
+    let name = document.getElementById("name").value.trim();
+    let country = document.getElementById("country").value.trim();
+
+    let subject = "Urgent Request for UGC’s Intervention in Renewal of MoU for Stipendium Hungaricum Scholarship";
+
+    let body = `Dear Prof. V. Sudharsana,\n\n` +
+               `I hope this email finds you well.\n\n` +
+               `I am writing to seek your intervention in the renewal of the Memorandum of Understanding (MoU) between India and Hungary for the Stipendium Hungaricum Scholarship, which expired two years ago. Due to this, Indian students have not been nominated for this prestigious scholarship program, causing a significant setback for those aspiring to study in Hungary.\n\n` +
+               `I have contacted the University Grants Commission (UGC), and I was informed that if students raise this issue with the Ministry of Education, the renewal process could be expedited. However, despite multiple efforts, no action has been taken, and students continue to miss out on this valuable opportunity.\n\n` +
+               `Why This Needs Urgent Attention:\n` +
+               `- The Stipendium Hungaricum Scholarship provides fully funded education opportunities for Indian students in Hungary, supporting bilateral academic collaboration.\n` +
+               `- Since the MoU has not been renewed, India has not sent any student nominations for the last two years, while students from other countries continue to benefit.\n` +
+               `- If the agreement is not renewed soon, students will once again miss the chance to apply for the upcoming scholarship cycle.\n\n` +
+               
+               `I kindly request your esteemed office to initiate the necessary discussions with the Ministry of Education and relevant authorities to ensure the MoU is renewed at the earliest. Given UGC's crucial role in facilitating higher education opportunities, your support would make a significant difference for many students.\n\n` +
+               `Please let us know if there are any steps that we, as students, can take to help expedite the process. We would truly appreciate any guidance on how to proceed further.\n\n` +
+               `Thank you for your time and consideration. I sincerely hope that this matter receives the urgent attention it deserves.\n\n` +
+               `Best regards,\n${name}\n${country}`;
+
+    let mailtoLink = `mailto:vsudharsana.ugc@nic.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailtoLink;
+}
+
+
 
 
         // Lock country dropdown & agreement checkbox initially
@@ -537,17 +563,17 @@
 
     async function submitSupport() {
         const name = document.getElementById("name").value.trim();
-        const email = document.getElementById("email").value.trim();
+        const country = document.getElementById("country").value.trim();
 
-        if (!name || !email) {
-            alert("❌ Please enter both name and email.");
+        if (!name || !country) {
+            alert("❌ Please enter your name and select a country.");
             return;
         }
 
         // ✅ Insert user data into Supabase
         const { error } = await supabase
             .from("supporters")
-            .insert([{ name, email }]);
+            .insert([{ name, country  }]);
 
         if (error) {
             console.error("Error:", error);
