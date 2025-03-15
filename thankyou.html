@@ -40,6 +40,29 @@
             color: black;
             margin-top: 10px;
         }
+
+        body { 
+            font-family: Arial, sans-serif; text-align: center; padding: 50px; 
+            /* 🎨 Background Image Settings */
+            background-image: url('backgroundthanku.jpg'); /* Ensure the image is in the same directory */
+            background-size: contain; /* Ensures entire handshake is visible */
+            background-position: center center; /* Center the image */
+            background-repeat: no-repeat; /* Prevent tiling */
+            background-attachment: fixed; /* Keep it fixed on scroll */
+            color: white; /* Make text readable */
+        }
+        
+        /* Optional: Add a semi-transparent overlay to improve text visibility */
+        body::before {
+        content: "";
+        position: fixed;  /* Keep it fixed to cover the whole page */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh; /* Ensure it covers the full viewport */
+        background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+        z-index: -1; /* Send it behind content */
+    }
     </style>
 </head>
 <body>
