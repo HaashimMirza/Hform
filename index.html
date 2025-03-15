@@ -16,6 +16,12 @@
         #email { background: #f0f0f0; cursor: not-allowed; }
         #sendIndia, #sendHungary, #sendUGC { background: grey; cursor: not-allowed; opacity: 0.6; pointer-events: none; }
 
+
+        button {
+            width: 90%; /* Make all buttons equal width */
+            max-width: 400px;
+            padding: 12px;
+        }
         /* Red Downward Arrow */
         .arrow-down {
             width: 0;
@@ -29,7 +35,7 @@
 
         /* Notes Section */
         .notes-container {
-            width: 90%;
+            width: 95%;
             max-width: 510px;
             background-color: #ffcc00;
             padding: 20px;
@@ -69,6 +75,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-wrap: wrap; /* Ensures proper alignment */
             gap: 10px;
             margin-top: 15px;
             padding-top: 10px;
@@ -78,7 +85,7 @@
         }
 
         .custom-checkbox {
-            width: 30px;
+            width: 34px;
             height: 22px;
             border: 3px solid black;
             border-radius: 4px;
