@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Send Email to Ministries</title>
     <style>
+        
         body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
         .form-group { display: flex; align-items: center; justify-content: center; margin: 15px; }
         input { padding: 10px; width: 80%; max-width: 300px; border: 1px solid #ccc; border-radius: 5px; }
@@ -14,6 +15,127 @@
         button:hover { background: #0056b3; }
         #email { background: #f0f0f0; cursor: not-allowed; }
         #sendIndia, #sendHungary, #sendUGC { background: grey; cursor: not-allowed; opacity: 0.6; pointer-events: none; }
+
+        /* Red Downward Arrow */
+        .arrow-down {
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 30px solid red;
+            margin: 20px auto;
+            display: none;
+        }
+
+        /* Notes Section */
+        .notes-container {
+            width: 90%;
+            max-width: 500px;
+            background-color: #ffcc00;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px auto;
+            display: none;
+            text-align: left;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+        }
+        .notes-title {
+            color: red;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+       /* Scrolling Text Effect */
+       .scrolling-text {
+            height: 160px; /* Increased height */
+            overflow: hidden;
+            position: relative;
+        }
+        .scrolling-text ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            width: 100%;
+            animation: scrollUp 18s linear infinite; /* Slowed down */
+        }
+        @keyframes scrollUp {
+            0% { top: 100%; }
+            100% { top: -200%; } /* Smooth loop without delay */
+        }
+           /* ✅ Checkbox & Agreement Like Image */
+        .agreement-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 2px solid black;
+            font-size: 18px; /* Increased for better visibility */
+            font-weight: bold;
+        }
+
+        .custom-checkbox {
+            width: 29px;
+            height: 22px;
+            border: 3px solid black;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .custom-checkbox input {
+            display: none;
+        }
+
+        .custom-checkbox span {
+            display: none;
+            font-size: 20px;
+            color: green;
+        }
+
+        .custom-checkbox input:checked + span {
+            display: block;
+        }
+
+         /* 🎨 Colorful Points for Visibility */
+         .scrolling-text li {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding: 8px;
+            border-radius: 5px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Alternating Colors for Better Visibility */
+        .scrolling-text li:nth-child(1) { background: #FF5733; color: white; }
+        .scrolling-text li:nth-child(2) { background: #28A745; color: white; }
+        .scrolling-text li:nth-child(3) { background: #17A2B8; color: white; }
+        .scrolling-text li:nth-child(4) { background: #FFC107; color: black; }
+        .scrolling-text li:nth-child(5) { background: #6F42C1; color: white; }
+        .scrolling-text li:nth-child(6) { background: #DC3545; color: white; }
+
+        select {
+            padding: 10px;
+            width: 80%;
+            max-width: 320px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            background-color: white;
+            appearance: none; /* Remove default dropdown styles */
+            cursor: pointer;
+        }
+
+        
+
+
     </style>
 </head>
 <body>
@@ -27,53 +149,248 @@
     <p class="error" id="nameError">Please enter your name.</p>
 
     <div class="form-group">
-        <input type="email" id="email" placeholder="Enter Your Email" required disabled>
-        <span class="status-icon" id="emailIcon">❗</span>
+        <select id="country" required>
+            <option value="" disabled selected>Select Your Country</option>
+            <option value="Afghanistan">Afghanistan</option>
+            <option value="Albania">Albania</option>
+            <option value="Algeria">Algeria</option>
+            <option value="Andorra">Andorra</option>
+            <option value="Angola">Angola</option>
+            <option value="Argentina">Argentina</option>
+            <option value="Armenia">Armenia</option>
+            <option value="Australia">Australia</option>
+            <option value="Austria">Austria</option>
+            <option value="Azerbaijan">Azerbaijan</option>
+            <option value="Bahamas">Bahamas</option>
+            <option value="Bahrain">Bahrain</option>
+            <option value="Bangladesh">Bangladesh</option>
+            <option value="Barbados">Barbados</option>
+            <option value="Belarus">Belarus</option>
+            <option value="Belgium">Belgium</option>
+            <option value="Belize">Belize</option>
+            <option value="Benin">Benin</option>
+            <option value="Bhutan">Bhutan</option>
+            <option value="Bolivia">Bolivia</option>
+            <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+            <option value="Botswana">Botswana</option>
+            <option value="Brazil">Brazil</option>
+            <option value="Brunei">Brunei</option>
+            <option value="Bulgaria">Bulgaria</option>
+            <option value="Burkina Faso">Burkina Faso</option>
+            <option value="Burundi">Burundi</option>
+            <option value="Cambodia">Cambodia</option>
+            <option value="Cameroon">Cameroon</option>
+            <option value="Canada">Canada</option>
+            <option value="Chad">Chad</option>
+            <option value="Chile">Chile</option>
+            <option value="China">China</option>
+            <option value="Colombia">Colombia</option>
+            <option value="Congo">Congo</option>
+            <option value="Costa Rica">Costa Rica</option>
+            <option value="Croatia">Croatia</option>
+            <option value="Cuba">Cuba</option>
+            <option value="Cyprus">Cyprus</option>
+            <option value="Czech Republic">Czech Republic</option>
+            <option value="Denmark">Denmark</option>
+            <option value="Dominican Republic">Dominican Republic</option>
+            <option value="Ecuador">Ecuador</option>
+            <option value="Egypt">Egypt</option>
+            <option value="El Salvador">El Salvador</option>
+            <option value="Estonia">Estonia</option>
+            <option value="Ethiopia">Ethiopia</option>
+            <option value="Fiji">Fiji</option>
+            <option value="Finland">Finland</option>
+            <option value="France">France</option>
+            <option value="Germany">Germany</option>
+            <option value="Ghana">Ghana</option>
+            <option value="Greece">Greece</option>
+            <option value="Guatemala">Guatemala</option>
+            <option value="Haiti">Haiti</option>
+            <option value="Honduras">Honduras</option>
+            <option value="Hungary">Hungary</option>
+            <option value="Iceland">Iceland</option>
+            <option value="India">India</option>
+            <option value="Indonesia">Indonesia</option>
+            <option value="Iran">Iran</option>
+            <option value="Iraq">Iraq</option>
+            <option value="Ireland">Ireland</option>
+            <option value="Israel">Israel</option>
+            <option value="Italy">Italy</option>
+            <option value="Jamaica">Jamaica</option>
+            <option value="Japan">Japan</option>
+            <option value="Jordan">Jordan</option>
+            <option value="Kazakhstan">Kazakhstan</option>
+            <option value="Kenya">Kenya</option>
+            <option value="Kuwait">Kuwait</option>
+            <option value="Latvia">Latvia</option>
+            <option value="Lebanon">Lebanon</option>
+            <option value="Lithuania">Lithuania</option>
+            <option value="Luxembourg">Luxembourg</option>
+            <option value="Malaysia">Malaysia</option>
+            <option value="Maldives">Maldives</option>
+            <option value="Mexico">Mexico</option>
+            <option value="Mongolia">Mongolia</option>
+            <option value="Morocco">Morocco</option>
+            <option value="Myanmar">Myanmar</option>
+            <option value="Nepal">Nepal</option>
+            <option value="Netherlands">Netherlands</option>
+            <option value="New Zealand">New Zealand</option>
+            <option value="Nigeria">Nigeria</option>
+            <option value="North Korea">North Korea</option>
+            <option value="Norway">Norway</option>
+            <option value="Oman">Oman</option>
+            <option value="Pakistan">Pakistan</option>
+            <option value="Palestine">Palestine</option>
+            <option value="Panama">Panama</option>
+            <option value="Paraguay">Paraguay</option>
+            <option value="Peru">Peru</option>
+            <option value="Philippines">Philippines</option>
+            <option value="Poland">Poland</option>
+            <option value="Portugal">Portugal</option>
+            <option value="Qatar">Qatar</option>
+            <option value="Romania">Romania</option>
+            <option value="Russia">Russia</option>
+            <option value="Saudi Arabia">Saudi Arabia</option>
+            <option value="Senegal">Senegal</option>
+            <option value="Serbia">Serbia</option>
+            <option value="Singapore">Singapore</option>
+            <option value="Slovakia">Slovakia</option>
+            <option value="Slovenia">Slovenia</option>
+            <option value="South Africa">South Africa</option>
+            <option value="South Korea">South Korea</option>
+            <option value="Spain">Spain</option>
+            <option value="Sri Lanka">Sri Lanka</option>
+            <option value="Sudan">Sudan</option>
+            <option value="Sweden">Sweden</option>
+            <option value="Switzerland">Switzerland</option>
+            <option value="Syria">Syria</option>
+            <option value="Taiwan">Taiwan</option>
+            <option value="Tajikistan">Tajikistan</option>
+            <option value="Thailand">Thailand</option>
+            <option value="Tunisia">Tunisia</option>
+            <option value="Turkey">Turkey</option>
+            <option value="Ukraine">Ukraine</option>
+            <option value="United Arab Emirates">United Arab Emirates</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="United States">United States</option>
+            <option value="Venezuela">Venezuela</option>
+            <option value="Vietnam">Vietnam</option>
+            <option value="Yemen">Yemen</option>
+            <option value="Zambia">Zambia</option>
+            <option value="Zimbabwe">Zimbabwe</option>
+        </select>
+        <span class="status-icon" id="countryIcon">❗</span>
     </div>
+    <p class="error" id="countryError">Please select your country.</p>
+    
     <p class="error" id="emailError">Please enter a valid email.</p>
+
+    <div class="arrow-down" id="arrow"></div>
+
+    <div class="notes-container" id="notesBox">
+        <div class="notes-title">⚠ IMPORTANT: READ BEFORE SENDING EMAILS ⚠</div>
+        <div class="scrolling-text">
+            <ul>
+                <li>📢 Send emails to **ALL THREE contacts** – India Education Ministry, Hungary Ministry, and UGC.</li>
+                <li>📌 **Compulsory to use multiple email IDs** and slightly change your name each time.</li>
+                <li>🔥 **More emails = Greater impact!** We need more support.</li>
+                <li>🔒 **Do NOT change the email content** – confidentiality is crucial.</li>
+                <li>📢 **Spread awareness!** Ask your friends & contacts to send emails too.</li>
+                <li>💪 **Your effort matters – EVERY email counts!** Keep pushing!</li>
+            </ul>
+        </div>
+
+        <div class="agreement-container">
+            <label class="custom-checkbox">
+                <input type="checkbox" id="confirmAgreement">
+                <span style="color: red;">✔</span>
+            </label>
+            <label for="confirmAgreement">
+                I accept and promise to send emails from all my accounts and follow all rules.
+            </label>
+        </div>
+    </div>
 
     <h2>Send Pre-Filled Emails</h2>
     <button id="sendIndia" onclick="sendEmailToIndia()">📩 Email Ministry of Education, India</button>
     <button id="sendHungary" onclick="sendEmailToHungary()">📩 Email Ministry of Education, Hungary</button>
     <button id="sendUGC" onclick="sendEmailToUGC()">📩 Email UGC Chairman</button>
 
+    <div class="agreement-container">
+        <label class="custom-checkbox">
+            <input type="checkbox" id="confirmFinalAgreement">
+            <span>✔</span>
+        </label>
+        <label for="confirmFinalAgreement">
+            Yes, I have sent emails to all three of them.
+        </label>
+    </div>
+    
+    <button id="submitSupport"  disabled>✅ Submit & Confirm Support</button>
+    
     <script>
-        // Save form data to localStorage
-        document.getElementById("name").addEventListener("input", function() {
-            validateField(this, document.getElementById("nameIcon"), document.getElementById("nameError"));
-            localStorage.setItem("formName", this.value.trim());
+        // Lock country dropdown & agreement checkbox initially
+        document.getElementById("country").disabled = true;
+        document.getElementById("confirmAgreement").disabled = true;
+    
+        // Listen for input changes in the name field
+        document.getElementById("name").addEventListener("input", function () {
+            validateField(this, document.getElementById("nameIcon"), document.getElementById("nameError"), "country");
         });
-
-        document.getElementById("email").addEventListener("input", function() {
-            validateField(this, document.getElementById("emailIcon"), document.getElementById("emailError"));
-            localStorage.setItem("formEmail", this.value.trim());
+    
+        // Listen for selection in the country dropdown
+        document.getElementById("country").addEventListener("change", function () {
+            validateField(this, document.getElementById("countryIcon"), document.getElementById("countryError"), "notes");
         });
-
-        function validateField(input, icon, errorMsg) {
-            icon.style.display = "inline"; 
-            icon.innerText = "⏳"; // Show loading icon
-
+    
+        // Listen for checkbox in notes section
+        document.getElementById("confirmAgreement").addEventListener("change", function () {
+            checkFormValidity(); // Check & unlock buttons if checked
+        });
+    
+        // Enable final submit button when the last checkbox is checked
+        document.getElementById("confirmFinalAgreement").addEventListener("change", function () {
+            document.getElementById("submitSupport").disabled = !this.checked;
+        });
+    
+        function validateField(input, icon, errorMsg, nextField) {
+            icon.style.display = "inline";
+            icon.innerText = "⏳"; // Show loading effect
+    
             setTimeout(() => {
                 if (input.value.trim() === "") {
                     icon.innerText = "❗";
                     errorMsg.style.display = "block";
-                    if (input.id === "name") {
-                        document.getElementById("email").disabled = true;
-                        document.getElementById("email").style.background = "#f0f0f0"; 
+    
+                    // Lock the next field if validation fails
+                    if (nextField === "country") {
+                        document.getElementById("country").disabled = true;
+                        document.getElementById("countryIcon").style.display = "none"; // Hide icon
+                    }
+                    if (nextField === "notes") {
+                        hideArrowAndNotes();
+                        document.getElementById("confirmAgreement").disabled = true; // Ensure checkbox remains disabled
                     }
                 } else {
                     icon.innerText = "✅";
                     errorMsg.style.display = "none";
-                    if (input.id === "name") {
-                        document.getElementById("email").disabled = false;
-                        document.getElementById("email").style.background = "white"; 
-                        document.getElementById("email").style.cursor = "text";
+    
+                    // Unlock the next field if validation is successful
+                    if (nextField === "country") {
+                        document.getElementById("country").disabled = false; // ✅ Unlock dropdown
+                        document.getElementById("countryIcon").style.display = "inline"; // Show tick mark ✅
+                    }
+                    if (nextField === "notes") {
+                        if (document.getElementById("countryIcon").innerText === "✅") {
+                            showArrowAndNotes();
+                            document.getElementById("confirmAgreement").disabled = false; // ✅ Enable checkbox
+                        }
                     }
                 }
                 checkFormValidity();
             }, 500);
         }
-
+    
         function unlockButton(buttonId) {
             let btn = document.getElementById(buttonId);
             btn.style.background = "#007BFF";
@@ -81,7 +398,7 @@
             btn.style.opacity = "1";
             btn.style.pointerEvents = "auto";
         }
-
+    
         function lockButton(buttonId) {
             let btn = document.getElementById(buttonId);
             btn.style.background = "grey";
@@ -89,89 +406,114 @@
             btn.style.opacity = "0.6";
             btn.style.pointerEvents = "none";
         }
-
-        // Check button unlocking conditions
+    
+        function lockButtons() {
+            lockButton("sendIndia");
+            lockButton("sendHungary");
+            lockButton("sendUGC");
+        }
+    
         function checkFormValidity() {
             let nameValid = document.getElementById("nameIcon").innerText === "✅";
-            let emailValid = document.getElementById("emailIcon").innerText === "✅";
-            let formValid = nameValid && emailValid;
-
-            // Unlock India button first
-            if (formValid) {
+            let countryValid = document.getElementById("countryIcon").innerText === "✅";
+            let agreementChecked = document.getElementById("confirmAgreement").checked;
+    
+            if (nameValid && countryValid && agreementChecked) {
                 unlockButton("sendIndia");
-            } else {
-                lockButton("sendIndia");
-                lockButton("sendHungary");
-                lockButton("sendUGC");
-                return; // Stop checking further if form is not valid
-            }
-
-            // Unlock Hungary button only after India email is sent
-            const firstEmailSent = localStorage.getItem("firstEmailSent") === "true";
-            if (formValid && firstEmailSent) {
                 unlockButton("sendHungary");
-            } else {
-                lockButton("sendHungary");
-            }
-
-            // Unlock UGC button only after Hungary email is sent
-            const secondEmailSent = localStorage.getItem("secondEmailSent") === "true";
-            if (formValid && secondEmailSent) {
                 unlockButton("sendUGC");
             } else {
-                lockButton("sendUGC");
+                lockButtons();
             }
         }
-
-        function sendEmailToIndia() {
-            let name = document.getElementById("name").value;
-            let email = document.getElementById("email").value;
-            let subject = "Urgent Request for Renewal of MoU Between India and Hungary for Stipendium Hungaricum Scholarship";
-            let body = `Dear Sir/Madam,%0A%0A I am writing to bring to your attention the urgent need to renew the MoU between India and Hungary.%0A%0A Best regards,%0A${name}%0A${email}`;
-            let mailtoLink = `mailto:contact.edu@gov.in?subject=${encodeURIComponent(subject)}&body=${body}`;
-
-            localStorage.setItem("firstEmailSent", "true");
-            checkFormValidity();
-            window.location.href = mailtoLink;
+    
+        function showArrowAndNotes() {
+            document.getElementById("arrow").style.display = "block";
+            document.getElementById("notesBox").style.display = "block";
         }
-
-        function sendEmailToHungary() {
-            let name = document.getElementById("name").value;
-            let email = document.getElementById("email").value;
-            let subject = "Request for MoU Renewal with India – Stipendium Hungaricum Scholarship";
-            let body = `Dear Sir/Madam,%0A%0A I kindly request the Hungarian Ministry of Education to expedite the renewal of the MoU with India.%0A%0A Best regards,%0A${name}%0A${email}`;
-            let mailtoLink = `mailto:office@itm.gov.hu?subject=${encodeURIComponent(subject)}&body=${body}`;
-
-            localStorage.setItem("secondEmailSent", "true");
-            checkFormValidity();
-            window.location.href = mailtoLink;
+    
+        function hideArrowAndNotes() {
+            document.getElementById("arrow").style.display = "none";
+            document.getElementById("notesBox").style.display = "none";
         }
-
-        function sendEmailToUGC() {
-            let name = document.getElementById("name").value;
-            let email = document.getElementById("email").value;
-            let subject = "Urgent Request for UGC’s Intervention in Renewal of MoU for Stipendium Hungaricum Scholarship";
-            let body = `Dear Prof. V. Sudharsana,%0A%0A I am seeking your intervention in the renewal of the MoU between India and Hungary.%0A%0A Best regards,%0A${name}%0A${email}`;
-            let mailtoLink = `mailto:vsudharsana.ugc@nic.in?subject=${encodeURIComponent(subject)}&body=${body}`;
-
-            localStorage.clear();
-            window.location.href = mailtoLink;
-        }
-
-        window.onload = function () {
-            // Restore form data (Name and Email)
-            document.getElementById("name").value = localStorage.getItem("formName") || "";
-            document.getElementById("email").value = localStorage.getItem("formEmail") || "";
-
-            // Trigger validation for both fields
-            validateField(document.getElementById("name"), document.getElementById("nameIcon"), document.getElementById("nameError"));
-            validateField(document.getElementById("email"), document.getElementById("emailIcon"), document.getElementById("emailError"));
-
-            // **Delay checking buttons to ensure localStorage updates properly**
-            setTimeout(checkFormValidity, 300);  // ✅ Fix for Mobile
-        };
-
+    
+        // **Initial Lock State: Country Dropdown & Email Buttons Locked**
+        document.getElementById("country").disabled = true;
+        document.getElementById("confirmAgreement").disabled = true;
+        lockButtons();
     </script>
+    
+    
+
+
+
+<script type="module">
+    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+    // ✅ Replace with your actual Supabase credentials
+    const SUPABASE_URL = "https://fvzoocciiobifsazudbq.supabase.co";  // Replace this
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ2em9vY2NpaW9iaWZzYXp1ZGJxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE5MjY4ODAsImV4cCI6MjA1NzUwMjg4MH0.R16-W6zB5dbCGWALDVzo0PJl2wFMFJyAsKAlXZBpMSQ";  // Replace this
+
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+   
+      // ✅ Reference to submit button
+      const submitButton = document.getElementById("submitSupport");
+    const confirmFinalCheckbox = document.getElementById("confirmFinalAgreement");
+
+    // ✅ Ensure submit button is disabled by default
+    submitButton.disabled = true;
+    submitButton.style.background = "grey"; // Greyed-out button
+
+    // ✅ Enable button only when checkbox is checked
+    confirmFinalCheckbox.addEventListener("change", function () {
+        if (this.checked) {
+            submitButton.disabled = false;
+            submitButton.style.background = "#007BFF"; // Active color
+            submitButton.style.cursor = "pointer";
+        } else {
+            submitButton.disabled = true;
+            submitButton.style.background = "grey";
+            submitButton.style.cursor = "not-allowed";
+        }
+    });
+
+
+
+    async function submitSupport() {
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+
+        if (!name || !email) {
+            alert("❌ Please enter both name and email.");
+            return;
+        }
+
+        // ✅ Insert user data into Supabase
+        const { error } = await supabase
+            .from("supporters")
+            .insert([{ name, email }]);
+
+        if (error) {
+            console.error("Error:", error);
+            alert("❌ Something went wrong!");
+            return;
+        }
+
+        // ✅ Fetch supporter count
+        const { count } = await supabase
+            .from("supporters")
+            .select("*", { count: "exact" });
+
+     
+        
+        // ✅ Redirect to thank-you page with supporter number
+        window.location.href = `thankyou.html?supporter=${count}`;
+    }
+
+    document.getElementById("submitSupport").addEventListener("click", submitSupport);
+</script>
+
 
 </body>
 </html>
