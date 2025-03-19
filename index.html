@@ -325,7 +325,8 @@ h2, p, label {
 
         let mailtoLink = `mailto:office@itm.gov.hu,stipendiumhungaricum@tpf.hu,info@tpf.hu,studyinhungary@tpf.hu,stipendiumhungaricum@itm.gov.hu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-        window.location.href = mailtoLink;
+        window.open(mailtoLink, "_self");
+
     }
 
     function sendEmailToIndia() {
@@ -349,7 +350,8 @@ h2, p, label {
                `Best regards,\n${name}`;
 
     let mailtoLink = `mailto:contact.edu@gov.in,info.edu@gov.in,minister.sm@gov.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailtoLink;
+    window.open(mailtoLink, "_self");
+
      
 }
 
@@ -377,7 +379,8 @@ function sendEmailToUGC() {
 
     let mailtoLink = `mailto:vsudharsana.ugc@nic.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-    window.location.href = mailtoLink;
+    window.open(mailtoLink, "_self");
+
     // ✅ Store flag before redirecting
     localStorage.setItem("ugcEmailSent", "true");
 
