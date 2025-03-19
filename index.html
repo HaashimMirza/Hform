@@ -206,6 +206,27 @@
             height: auto;
         }
 
+        .final-agreement-container {
+            display: flex;
+            align-items: center; 
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 2px solid black;
+            font-size: 18px; /* Increased for better visibility */
+            font-weight: bold;
+        }
+
+        .final-agreement-container label {
+            display: flex;
+            align-items: center;
+            text-align: left;
+            max-width: 90%;
+            font-size: 16px;
+            line-height: 1.3;
+        }
+
 
         
 /* ✅ Fix Text & Button Visibility */
@@ -233,139 +254,7 @@ h2, p, label {
             </div>
             <p class="error" id="nameError">Please enter your name.</p>
 
-            <div class="form-group">
-                <select id="country" required>
-                    <option value="" disabled selected>Select Your Country</option>
-                    <option value="Afghanistan">Afghanistan</option>
-                    <option value="Albania">Albania</option>
-                    <option value="Algeria">Algeria</option>
-                    <option value="Andorra">Andorra</option>
-                    <option value="Angola">Angola</option>
-                    <option value="Argentina">Argentina</option>
-                    <option value="Armenia">Armenia</option>
-                    <option value="Australia">Australia</option>
-                    <option value="Austria">Austria</option>
-                    <option value="Azerbaijan">Azerbaijan</option>
-                    <option value="Bahamas">Bahamas</option>
-                    <option value="Bahrain">Bahrain</option>
-                    <option value="Bangladesh">Bangladesh</option>
-                    <option value="Barbados">Barbados</option>
-                    <option value="Belarus">Belarus</option>
-                    <option value="Belgium">Belgium</option>
-                    <option value="Belize">Belize</option>
-                    <option value="Benin">Benin</option>
-                    <option value="Bhutan">Bhutan</option>
-                    <option value="Bolivia">Bolivia</option>
-                    <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
-                    <option value="Botswana">Botswana</option>
-                    <option value="Brazil">Brazil</option>
-                    <option value="Brunei">Brunei</option>
-                    <option value="Bulgaria">Bulgaria</option>
-                    <option value="Burkina Faso">Burkina Faso</option>
-                    <option value="Burundi">Burundi</option>
-                    <option value="Cambodia">Cambodia</option>
-                    <option value="Cameroon">Cameroon</option>
-                    <option value="Canada">Canada</option>
-                    <option value="Chad">Chad</option>
-                    <option value="Chile">Chile</option>
-                    <option value="China">China</option>
-                    <option value="Colombia">Colombia</option>
-                    <option value="Congo">Congo</option>
-                    <option value="Costa Rica">Costa Rica</option>
-                    <option value="Croatia">Croatia</option>
-                    <option value="Cuba">Cuba</option>
-                    <option value="Cyprus">Cyprus</option>
-                    <option value="Czech Republic">Czech Republic</option>
-                    <option value="Denmark">Denmark</option>
-                    <option value="Dominican Republic">Dominican Republic</option>
-                    <option value="Ecuador">Ecuador</option>
-                    <option value="Egypt">Egypt</option>
-                    <option value="El Salvador">El Salvador</option>
-                    <option value="Estonia">Estonia</option>
-                    <option value="Ethiopia">Ethiopia</option>
-                    <option value="Fiji">Fiji</option>
-                    <option value="Finland">Finland</option>
-                    <option value="France">France</option>
-                    <option value="Germany">Germany</option>
-                    <option value="Ghana">Ghana</option>
-                    <option value="Greece">Greece</option>
-                    <option value="Guatemala">Guatemala</option>
-                    <option value="Haiti">Haiti</option>
-                    <option value="Honduras">Honduras</option>
-                    <option value="Hungary">Hungary</option>
-                    <option value="Iceland">Iceland</option>
-                    <option value="India">India</option>
-                    <option value="Indonesia">Indonesia</option>
-                    <option value="Iran">Iran</option>
-                    <option value="Iraq">Iraq</option>
-                    <option value="Ireland">Ireland</option>
-                    <option value="Israel">Israel</option>
-                    <option value="Italy">Italy</option>
-                    <option value="Jamaica">Jamaica</option>
-                    <option value="Japan">Japan</option>
-                    <option value="Jordan">Jordan</option>
-                    <option value="Kazakhstan">Kazakhstan</option>
-                    <option value="Kenya">Kenya</option>
-                    <option value="Kuwait">Kuwait</option>
-                    <option value="Latvia">Latvia</option>
-                    <option value="Lebanon">Lebanon</option>
-                    <option value="Lithuania">Lithuania</option>
-                    <option value="Luxembourg">Luxembourg</option>
-                    <option value="Malaysia">Malaysia</option>
-                    <option value="Maldives">Maldives</option>
-                    <option value="Mexico">Mexico</option>
-                    <option value="Mongolia">Mongolia</option>
-                    <option value="Morocco">Morocco</option>
-                    <option value="Myanmar">Myanmar</option>
-                    <option value="Nepal">Nepal</option>
-                    <option value="Netherlands">Netherlands</option>
-                    <option value="New Zealand">New Zealand</option>
-                    <option value="Nigeria">Nigeria</option>
-                    <option value="North Korea">North Korea</option>
-                    <option value="Norway">Norway</option>
-                    <option value="Oman">Oman</option>
-                    <option value="Pakistan">Pakistan</option>
-                    <option value="Palestine">Palestine</option>
-                    <option value="Panama">Panama</option>
-                    <option value="Paraguay">Paraguay</option>
-                    <option value="Peru">Peru</option>
-                    <option value="Philippines">Philippines</option>
-                    <option value="Poland">Poland</option>
-                    <option value="Portugal">Portugal</option>
-                    <option value="Qatar">Qatar</option>
-                    <option value="Romania">Romania</option>
-                    <option value="Russia">Russia</option>
-                    <option value="Saudi Arabia">Saudi Arabia</option>
-                    <option value="Senegal">Senegal</option>
-                    <option value="Serbia">Serbia</option>
-                    <option value="Singapore">Singapore</option>
-                    <option value="Slovakia">Slovakia</option>
-                    <option value="Slovenia">Slovenia</option>
-                    <option value="South Africa">South Africa</option>
-                    <option value="South Korea">South Korea</option>
-                    <option value="Spain">Spain</option>
-                    <option value="Sri Lanka">Sri Lanka</option>
-                    <option value="Sudan">Sudan</option>
-                    <option value="Sweden">Sweden</option>
-                    <option value="Switzerland">Switzerland</option>
-                    <option value="Syria">Syria</option>
-                    <option value="Taiwan">Taiwan</option>
-                    <option value="Tajikistan">Tajikistan</option>
-                    <option value="Thailand">Thailand</option>
-                    <option value="Tunisia">Tunisia</option>
-                    <option value="Turkey">Turkey</option>
-                    <option value="Ukraine">Ukraine</option>
-                    <option value="United Arab Emirates">United Arab Emirates</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                    <option value="United States">United States</option>
-                    <option value="Venezuela">Venezuela</option>
-                    <option value="Vietnam">Vietnam</option>
-                    <option value="Yemen">Yemen</option>
-                    <option value="Zambia">Zambia</option>
-                    <option value="Zimbabwe">Zimbabwe</option>
-                </select>
-                <span class="status-icon" id="countryIcon">❗</span>
-            </div>
+         
             <p class="error" id="countryError">Please select your country.</p>
             
             <p class="error" id="emailError">Please enter a valid email.</p>
@@ -376,12 +265,12 @@ h2, p, label {
                 <div class="notes-title">⚠ IMPORTANT: READ BEFORE SENDING EMAILS ⚠</div>
                 <div class="scrolling-text">
                     <ul>
-                        <li>📢 Send emails to **ALL THREE contacts** – India Education Ministry, Hungary Ministry, and UGC.</li>
-                        <li>📌 **Compulsory to use multiple email IDs** and slightly change your name each time.</li>
-                        <li>🔥 **More emails = Greater impact!** We need more support.</li>
-                        <li>🔒 **Do NOT change the email content** – confidentiality is crucial.</li>
-                        <li>📢 **Spread awareness!** Ask your friends & contacts to send emails too.</li>
-                        <li>💪 **Your effort matters – EVERY email counts!** Keep pushing!</li>
+                        <li>📢 Send emails to <b>ALL THREE contacts</b> – India Education Ministry, Hungary Ministry, and UGC.</li>
+                        <li>📌 <b>Compulsory to use multiple email IDs</b> and slightly change your name each time.</li>
+                        <li>🔥 <b>More emails = Greater impact!</b> We need more support.</li>
+                        <li>🔒 <b>Do NOT change the email content</b> – confidentiality is crucial.</li>
+                        <li>📢 <b>Spread awareness!</b> Ask your friends & contacts to send emails too.</li>
+                        <li>💪 <b>Your effort matters – EVERY email counts!** Keep pushing!</li>
                     </ul>
                 </div>
 
@@ -401,7 +290,7 @@ h2, p, label {
             <button id="sendHungary" onclick="sendEmailToHungary()">📩 Email Ministry of Education, Hungary</button>
             <button id="sendUGC" onclick="sendEmailToUGC()">📩 Email UGC Chairman</button>
 
-            <div class="agreement-container">
+            <div class="final-agreement-container">
                 <label class="custom-checkbox">
                     <input type="checkbox" id="confirmFinalAgreement">
                     <span>✔</span>
@@ -432,7 +321,7 @@ h2, p, label {
                 `Your assistance in resolving this matter would be greatly appreciated. Thank you for your time and consideration.\n\n` +
                 `Best regards,\n${name}\n${country}`;
 
-        let mailtoLink = `mailto:office@itm.gov.hu,stipendiumhungacium@tpf.hu,info@tpf.hu,studyinhungary@tpf.hu,stipendiumhungaricum@itm.gov.hu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        let mailtoLink = `mailto:office@itm.gov.hu,stipendiumhungaricum@tpf.hu,info@tpf.hu,studyinhungary@tpf.hu,stipendiumhungaricum@itm.gov.hu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
         window.location.href = mailtoLink;
     }
@@ -459,8 +348,27 @@ h2, p, label {
 
     let mailtoLink = `mailto:contact.edu@gov.in,info.edu@gov.in,minister.sm@gov.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-    window.location.href = mailtoLink;
+     
 }
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    let finalAgreementSection = document.querySelector(".final-agreement-container");
+    let submitButton = document.getElementById("submitSupport");
+
+    // ✅ Ensure elements exist before hiding
+    if (finalAgreementSection && submitButton) {
+        finalAgreementSection.style.display = "none"; // Hide agreement section
+        submitButton.style.display = "none"; // Hide submit button
+
+        // ✅ Show section + button if UGC email was sent
+        if (localStorage.getItem("ugcEmailSent") === "true") {
+            finalAgreementSection.style.display = "block"; // Show agreement section
+            submitButton.style.display = "block"; // Show submit button
+            localStorage.removeItem("ugcEmailSent"); // Remove flag after showing
+        }
+    }
+});
 
 function sendEmailToUGC() {
     let name = document.getElementById("name").value.trim();
@@ -484,129 +392,110 @@ function sendEmailToUGC() {
 
     let mailtoLink = `mailto:vsudharsana.ugc@nic.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
+    w// ✅ Store flag before redirecting
+    localStorage.setItem("ugcEmailSent", "true");
+
     window.location.href = mailtoLink;
 }
 
 
 
 
-        // Lock country dropdown & agreement checkbox initially
-        document.getElementById("country").disabled = true;
-        document.getElementById("confirmAgreement").disabled = true;
-    
-        // Listen for input changes in the name field
-        document.getElementById("name").addEventListener("input", function () {
-            validateField(this, document.getElementById("nameIcon"), document.getElementById("nameError"), "country");
-        });
-    
-        // Listen for selection in the country dropdown
-        document.getElementById("country").addEventListener("change", function () {
-            validateField(this, document.getElementById("countryIcon"), document.getElementById("countryError"), "notes");
-        });
-    
-        // Listen for checkbox in notes section
-        document.getElementById("confirmAgreement").addEventListener("change", function () {
-            checkFormValidity(); // Check & unlock buttons if checked
-        });
-    
-        // Enable final submit button when the last checkbox is checked
-        document.getElementById("confirmFinalAgreement").addEventListener("change", function () {
-            document.getElementById("submitSupport").disabled = !this.checked;
-        });
-    
-        function validateField(input, icon, errorMsg, nextField) {
-            icon.style.display = "inline";
-            icon.innerText = "⏳"; // Show loading effect
-    
-            setTimeout(() => {
-                if (input.value.trim() === "") {
-                    icon.innerText = "❗";
-                    errorMsg.style.display = "block";
-    
-                    // Lock the next field if validation fails
-                    if (nextField === "country") {
-                        document.getElementById("country").disabled = true;
-                        document.getElementById("countryIcon").style.display = "none"; // Hide icon
-                    }
-                    if (nextField === "notes") {
-                        hideArrowAndNotes();
-                        document.getElementById("confirmAgreement").disabled = true; // Ensure checkbox remains disabled
-                    }
-                } else {
-                    icon.innerText = "✅";
-                    errorMsg.style.display = "none";
-    
-                    // Unlock the next field if validation is successful
-                    if (nextField === "country") {
-                        document.getElementById("country").disabled = false; // ✅ Unlock dropdown
-                        document.getElementById("countryIcon").style.display = "inline"; // Show tick mark ✅
-                    }
-                    if (nextField === "notes") {
-                        if (document.getElementById("countryIcon").innerText === "✅") {
-                            showArrowAndNotes();
-                            document.getElementById("confirmAgreement").disabled = false; // ✅ Enable checkbox
-                        }
-                    }
-                }
-                checkFormValidity();
-            }, 500);
+
+// Lock agreement checkbox initially
+document.getElementById("confirmAgreement").disabled = true;
+
+// Listen for input changes in the name field
+document.getElementById("name").addEventListener("input", function () {
+    validateField(this, document.getElementById("nameIcon"), document.getElementById("nameError"));
+});
+
+// Listen for checkbox in notes section
+document.getElementById("confirmAgreement").addEventListener("change", function () {
+    checkFormValidity(); // Check & unlock buttons if checked
+});
+
+// Enable final submit button when the last checkbox is checked
+document.getElementById("confirmFinalAgreement").addEventListener("change", function () {
+    document.getElementById("submitSupport").disabled = !this.checked;
+});
+
+
+
+
+function validateField(input, icon, errorMsg) {
+    icon.style.display = "inline";
+    icon.innerText = "⏳"; // Show loading effect
+
+    setTimeout(() => {
+        if (input.value.trim() === "") {
+            icon.innerText = "❗";
+            errorMsg.style.display = "block";
+
+            // Lock everything if validation fails
+            hideArrowAndNotes();
+            document.getElementById("confirmAgreement").disabled = true; // Ensure checkbox remains disabled
+            lockButtons();
+        } else {
+            icon.innerText = "✅";
+            errorMsg.style.display = "none";
+
+            // ✅ Show arrow and notes
+            showArrowAndNotes();
+            document.getElementById("confirmAgreement").disabled = false; // Enable agreement checkbox
         }
-    
-        function unlockButton(buttonId) {
-            let btn = document.getElementById(buttonId);
-            btn.style.background = "#007BFF";
-            btn.style.cursor = "pointer";
-            btn.style.opacity = "1";
-            btn.style.pointerEvents = "auto";
-        }
-    
-        function lockButton(buttonId) {
-            let btn = document.getElementById(buttonId);
-            btn.style.background = "grey";
-            btn.style.cursor = "not-allowed";
-            btn.style.opacity = "0.6";
-            btn.style.pointerEvents = "none";
-        }
-    
-        function lockButtons() {
-            lockButton("sendIndia");
-            lockButton("sendHungary");
-            lockButton("sendUGC");
-        }
-    
-        function checkFormValidity() {
-            let nameValid = document.getElementById("nameIcon").innerText === "✅";
-            let countryValid = document.getElementById("countryIcon").innerText === "✅";
-            let agreementChecked = document.getElementById("confirmAgreement").checked;
-    
-            if (nameValid && countryValid && agreementChecked) {
-                unlockButton("sendIndia");
-                unlockButton("sendHungary");
-                unlockButton("sendUGC");
-            } else {
-                lockButtons();
-            }
-        }
-    
-        function showArrowAndNotes() {
-            document.getElementById("arrow").style.display = "block";
-            document.getElementById("notesBox").style.display = "block";
-        }
-    
-        function hideArrowAndNotes() {
-            document.getElementById("arrow").style.display = "none";
-            document.getElementById("notesBox").style.display = "none";
-        }
-    
-        // **Initial Lock State: Country Dropdown & Email Buttons Locked**
-        document.getElementById("country").disabled = true;
-        document.getElementById("confirmAgreement").disabled = true;
+    }, 500);
+}
+
+function unlockButton(buttonId) {
+    let btn = document.getElementById(buttonId);
+    btn.style.background = "#007BFF";
+    btn.style.cursor = "pointer";
+    btn.style.opacity = "1";
+    btn.style.pointerEvents = "auto";
+}
+
+function lockButton(buttonId) {
+    let btn = document.getElementById(buttonId);
+    btn.style.background = "grey";
+    btn.style.cursor = "not-allowed";
+    btn.style.opacity = "0.6";
+    btn.style.pointerEvents = "none";
+}
+
+function lockButtons() {
+    lockButton("sendIndia");
+    lockButton("sendHungary");
+    lockButton("sendUGC");
+}
+
+function checkFormValidity() {
+    let nameValid = document.getElementById("nameIcon").innerText === "✅";
+    let agreementChecked = document.getElementById("confirmAgreement").checked;
+
+    if (nameValid && agreementChecked) {
+        unlockButton("sendIndia");
+        unlockButton("sendHungary");
+        unlockButton("sendUGC");
+    } else {
         lockButtons();
+    }
+}
 
+function showArrowAndNotes() {
+    document.getElementById("arrow").style.display = "block";
+    document.getElementById("notesBox").style.display = "block";
+}
 
+function hideArrowAndNotes() {
+    document.getElementById("arrow").style.display = "none";
+    document.getElementById("notesBox").style.display = "none";
+}
 
+// **Initial Lock State: Email Buttons Locked**
+document.getElementById("confirmAgreement").disabled = true;
+lockButtons();
 
-        
     </script>
     
     
