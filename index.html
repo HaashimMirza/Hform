@@ -352,23 +352,6 @@ h2, p, label {
 }
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    let finalAgreementSection = document.querySelector(".final-agreement-container");
-    let submitButton = document.getElementById("submitSupport");
-
-    // ✅ Ensure elements exist before hiding
-    if (finalAgreementSection && submitButton) {
-        finalAgreementSection.style.display = "none"; // Hide agreement section
-        submitButton.style.display = "none"; // Hide submit button
-
-        // ✅ Show section + button if UGC email was sent
-        if (localStorage.getItem("ugcEmailSent") === "true") {
-            finalAgreementSection.style.display = "block"; // Show agreement section
-            submitButton.style.display = "block"; // Show submit button
-            localStorage.removeItem("ugcEmailSent"); // Remove flag after showing
-        }
-    }
-});
 
 function sendEmailToUGC() {
     let name = document.getElementById("name").value.trim();
@@ -418,6 +401,24 @@ document.getElementById("confirmAgreement").addEventListener("change", function 
 // Enable final submit button when the last checkbox is checked
 document.getElementById("confirmFinalAgreement").addEventListener("change", function () {
     document.getElementById("submitSupport").disabled = !this.checked;
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    let finalAgreementSection = document.querySelector(".final-agreement-container");
+    let submitButton = document.getElementById("submitSupport");
+
+    // ✅ Ensure elements exist before hiding
+    if (finalAgreementSection && submitButton) {
+        finalAgreementSection.style.display = "none"; // Hide agreement section
+        submitButton.style.display = "none"; // Hide submit button
+
+        // ✅ Show section + button if UGC email was sent
+        if (localStorage.getItem("ugcEmailSent") === "true") {
+            finalAgreementSection.style.display = "block"; // Show agreement section
+            submitButton.style.display = "block"; // Show submit button
+            localStorage.removeItem("ugcEmailSent"); // Remove flag after showing
+        }
+    }
 });
 
 
