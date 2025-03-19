@@ -304,14 +304,7 @@ h2, p, label {
            
     <script>
 
-        // ✅ Universal function to send emails
-        function sendEmail(subject, body, recipient) {
-            let mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-            setTimeout(() => {
-                window.open(mailtoLink, "_self"); // ✅ Opens Gmail app or default email app on mobile
-            }, 500); // ✅ Ensures execution delay to prevent browser blocking
-        }
+    
 
     function sendEmailToHungary() {
         let name = document.getElementById("name").value;
@@ -355,8 +348,8 @@ h2, p, label {
                `Thank you for your time and support.\n\n` +
                `Best regards,\n${name}\n${country}`;
 
-               sendEmail(subject, body, "contact.edu@gov.in,info.edu@gov.in,minister.sm@gov.in");
-
+    let mailtoLink = `mailto:contact.edu@gov.in,info.edu@gov.in,minister.sm@gov.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoLink;
      
 }
 
@@ -384,10 +377,10 @@ function sendEmailToUGC() {
 
     let mailtoLink = `mailto:vsudharsana.ugc@nic.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-    w// ✅ Store flag before redirecting
+    window.location.href = mailtoLink;
+    // ✅ Store flag before redirecting
     localStorage.setItem("ugcEmailSent", "true");
 
-    window.location.href = mailtoLink;
 }
 
 
