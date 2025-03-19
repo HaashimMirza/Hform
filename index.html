@@ -304,11 +304,11 @@ h2, p, label {
            
     <script>
 
+
     
 
     function sendEmailToHungary() {
         let name = document.getElementById("name").value;
-        let country = document.getElementById("country").value;
 
         let subject = "Request for MoU Renewal with India – Stipendium Hungaricum Scholarship";
         
@@ -321,7 +321,7 @@ h2, p, label {
                 `- Many students are eagerly waiting to apply, and swift action on the MoU renewal would allow them to participate in the upcoming application cycle.\n\n` +
                 `I request the Hungarian Ministry of Education and the Department handling the Stipendium Hungaricum Scholarship to coordinate with the Indian Ministry of Education to finalize the MoU renewal at the earliest. Please let us know if there are any necessary steps we can take to support this process.\n\n` +
                 `Your assistance in resolving this matter would be greatly appreciated. Thank you for your time and consideration.\n\n` +
-                `Best regards,\n${name}\n${country}`;
+                `Best regards,\n${name}`;
 
         let mailtoLink = `mailto:office@itm.gov.hu,stipendiumhungaricum@tpf.hu,info@tpf.hu,studyinhungary@tpf.hu,stipendiumhungaricum@itm.gov.hu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
@@ -330,7 +330,7 @@ h2, p, label {
 
     function sendEmailToIndia() {
     let name = document.getElementById("name").value.trim();
-    let country = document.getElementById("country").value.trim();
+  
 
     let subject = "Urgent Request for Renewal of MoU Between India and Hungary for Stipendium Hungaricum Scholarship";
 
@@ -346,7 +346,7 @@ h2, p, label {
                `Please provide an update regarding the status of the MoU renewal and any actions that can be taken from our side to facilitate this process.\n\n` +
                `Your prompt attention to this matter would be highly appreciated, as it directly affects the academic future of many students.\n\n` +
                `Thank you for your time and support.\n\n` +
-               `Best regards,\n${name}\n${country}`;
+               `Best regards,\n${name}`;
 
     let mailtoLink = `mailto:contact.edu@gov.in,info.edu@gov.in,minister.sm@gov.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = mailtoLink;
@@ -357,7 +357,7 @@ h2, p, label {
 
 function sendEmailToUGC() {
     let name = document.getElementById("name").value.trim();
-    let country = document.getElementById("country").value.trim();
+   
 
     let subject = "Urgent Request for UGC’s Intervention in Renewal of MoU for Stipendium Hungaricum Scholarship";
 
@@ -373,7 +373,7 @@ function sendEmailToUGC() {
                `I kindly request your esteemed office to initiate the necessary discussions with the Ministry of Education and relevant authorities to ensure the MoU is renewed at the earliest. Given UGC's crucial role in facilitating higher education opportunities, your support would make a significant difference for many students.\n\n` +
                `Please let us know if there are any steps that we, as students, can take to help expedite the process. We would truly appreciate any guidance on how to proceed further.\n\n` +
                `Thank you for your time and consideration. I sincerely hope that this matter receives the urgent attention it deserves.\n\n` +
-               `Best regards,\n${name}\n${country}`;
+               `Best regards,\n${name}`;
 
     let mailtoLink = `mailto:vsudharsana.ugc@nic.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
