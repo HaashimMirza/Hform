@@ -355,52 +355,6 @@ h2, p, label {
      
 }
 
-
-
-function sendEmailToUGC() {
-    let name = document.getElementById("name").value.trim();
-   
-
-    let subject = "Urgent Request for UGC’s Intervention in Renewal of MoU for Stipendium Hungaricum Scholarship";
-
-    let body = `Dear Prof. V. Sudharsana,\n\n` +
-               `I hope this email finds you well.\n\n` +
-               `I am writing to seek your intervention in the renewal of the Memorandum of Understanding (MoU) between India and Hungary for the Stipendium Hungaricum Scholarship, which expired two years ago. Due to this, Indian students have not been nominated for this prestigious scholarship program, causing a significant setback for those aspiring to study in Hungary.\n\n` +
-               `Why This Needs Urgent Attention:\n` +
-               `- The Stipendium Hungaricum Scholarship provides fully funded education opportunities for Indian students in Hungary, supporting bilateral academic collaboration.\n` +
-               `- Since the MoU has not been renewed, India has not sent any student nominations for the last two years, while students from other countries continue to benefit.\n` +
-               `- If the agreement is not renewed soon, students will once again miss the chance to apply for the upcoming scholarship cycle.\n\n` +
-               `I kindly request your esteemed office to initiate the necessary discussions with the Ministry of Education and relevant authorities to ensure the MoU is renewed at the earliest. Given UGC's crucial role in facilitating higher education opportunities, your support would make a significant difference for many students.\n\n` +
-               `Please let us know if there are any steps that we, as students, can take to help expedite the process. We would truly appreciate any guidance on how to proceed further.\n\n` +
-               `Thank you for your time and consideration. I sincerely hope that this matter receives the urgent attention it deserves.\n\n` +
-               `Best regards,\n${name}`;
-
-    let mailtoLink = `mailto:vsudharsana.ugc@nic.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    window.open(mailtoLink, "_self");
-
-    // ✅ Store flag before redirecting
-    localStorage.setItem("ugcEmailSent", "true");
-
-}
-
-
-
-
-
-// Lock agreement checkbox initially
-document.getElementById("confirmAgreement").disabled = true;
-
-// Listen for input changes in the name field
-document.getElementById("name").addEventListener("input", function () {
-    validateField(this, document.getElementById("nameIcon"), document.getElementById("nameError"));
-});
-
-// Listen for checkbox in notes section
-document.getElementById("confirmAgreement").addEventListener("change", function () {
-    checkFormValidity(); // Check & unlock buttons if checked
-});
-
 // Enable final submit button when the last checkbox is checked
 document.getElementById("confirmFinalAgreement").addEventListener("change", function () {
     document.getElementById("submitSupport").disabled = !this.checked;
@@ -423,6 +377,53 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 });
+
+
+function sendEmailToUGC() {
+    let name = document.getElementById("name").value.trim();
+   
+
+    let subject = "Urgent Request for UGC’s Intervention in Renewal of MoU for Stipendium Hungaricum Scholarship";
+
+    let body = `Dear Prof. V. Sudharsana,\n\n` +
+               `I hope this email finds you well.\n\n` +
+               `I am writing to seek your intervention in the renewal of the Memorandum of Understanding (MoU) between India and Hungary for the Stipendium Hungaricum Scholarship, which expired two years ago. Due to this, Indian students have not been nominated for this prestigious scholarship program, causing a significant setback for those aspiring to study in Hungary.\n\n` +
+               `Why This Needs Urgent Attention:\n` +
+               `- The Stipendium Hungaricum Scholarship provides fully funded education opportunities for Indian students in Hungary, supporting bilateral academic collaboration.\n` +
+               `- Since the MoU has not been renewed, India has not sent any student nominations for the last two years, while students from other countries continue to benefit.\n` +
+               `- If the agreement is not renewed soon, students will once again miss the chance to apply for the upcoming scholarship cycle.\n\n` +
+               `I kindly request your esteemed office to initiate the necessary discussions with the Ministry of Education and relevant authorities to ensure the MoU is renewed at the earliest. Given UGC's crucial role in facilitating higher education opportunities, your support would make a significant difference for many students.\n\n` +
+               `Please let us know if there are any steps that we, as students, can take to help expedite the process. We would truly appreciate any guidance on how to proceed further.\n\n` +
+               `Thank you for your time and consideration. I sincerely hope that this matter receives the urgent attention it deserves.\n\n` +
+               `Best regards,\n${name}`;
+
+    let mailtoLink = `mailto:vsudharsana.ugc@nic.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    // ✅ Store flag before redirecting
+    localStorage.setItem("ugcEmailSent", "true");
+
+    window.open(mailtoLink, "_self");
+
+
+}
+
+
+
+
+
+// Lock agreement checkbox initially
+document.getElementById("confirmAgreement").disabled = true;
+
+// Listen for input changes in the name field
+document.getElementById("name").addEventListener("input", function () {
+    validateField(this, document.getElementById("nameIcon"), document.getElementById("nameError"));
+});
+
+// Listen for checkbox in notes section
+document.getElementById("confirmAgreement").addEventListener("change", function () {
+    checkFormValidity(); // Check & unlock buttons if checked
+});
+
 
 
 
