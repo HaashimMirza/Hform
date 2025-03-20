@@ -286,7 +286,7 @@ h2, p, label {
             <p class="error" id="nameError">Please enter your name.</p>
 
          
-            <p class="error" id="countryError">Please select your country.</p>
+   
             
             <p class="error" id="emailError">Please enter a valid email.</p>
 
@@ -551,7 +551,7 @@ lockButtons();
 
     async function submitSupport() {
         const name = document.getElementById("name").value.trim();
-        const country = document.getElementById("country").value.trim();
+
 
         if (!name) {
             alert("❌ Please enter your name.");
@@ -561,7 +561,7 @@ lockButtons();
         // ✅ Insert user data into Supabase
         const { error } = await supabase
             .from("supporters")
-            .insert([{ name, country  }]);
+            .insert([{ name}]);
 
         if (error) {
             console.error("Error:", error);
