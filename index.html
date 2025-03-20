@@ -213,7 +213,7 @@
             gap: 10px;
             margin-top: 15px;
             padding-top: 10px;
-            border-top: 2px solid black;
+            border-top: 2px solid white;
             font-size: 18px; /* Increased for better visibility */
             font-weight: bold;
         }
@@ -226,6 +226,35 @@
             font-size: 16px;
             line-height: 1.3;
         }
+
+        .final-agreement-custom-checkbox {
+            width: 28px;
+            height: 20px;
+            border: 3px solid black;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+    
+
+        .final-agreement-custom-checkbox input {
+            display: none;
+        }
+
+        .final-agreement-custom-checkbox span {
+            display: none;
+            font-size: 28px;
+            color: red;
+        }
+
+        .final-agreement-custom-checkbox input:checked + span {
+            display: block;
+        }
+
 
 
         
@@ -291,7 +320,7 @@ h2, p, label {
             <button id="sendUGC" onclick="sendEmailToUGC()">📩 Email UGC Chairman</button>
 
             <div class="final-agreement-container">
-                <label class="custom-checkbox">
+                <label class="final-agreement-custom-checkbox">
                     <input type="checkbox" id="confirmFinalAgreement">
                     <span>✔</span>
                 </label>
@@ -355,28 +384,6 @@ h2, p, label {
      
 }
 
-// Enable final submit button when the last checkbox is checked
-document.getElementById("confirmFinalAgreement").addEventListener("change", function () {
-    document.getElementById("submitSupport").disabled = !this.checked;
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    let finalAgreementSection = document.querySelector(".final-agreement-container");
-    let submitButton = document.getElementById("submitSupport");
-
-    // ✅ Ensure elements exist before hiding
-    if (finalAgreementSection && submitButton) {
-        finalAgreementSection.style.display = "none"; // Hide agreement section
-        submitButton.style.display = "none"; // Hide submit button
-
-        // ✅ Show section + button if UGC email was sent
-        if (localStorage.getItem("ugcEmailSent") === "true") {
-            finalAgreementSection.style.display = "block"; // Show agreement section
-            submitButton.style.display = "block"; // Show submit button
-            localStorage.removeItem("ugcEmailSent"); // Remove flag after showing
-        }
-    }
-});
 
 
 function sendEmailToUGC() {
